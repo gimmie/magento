@@ -8,7 +8,7 @@
 
   <sections>
     <Gimmie translate="label">
-      <label>Gimmie Loyalty Program Setup</label>
+      <label>Gimmie Rewards</label>
       <tab>gimmie</tab>
       <frontend_type>text</frontend_type>
       <sort_order>1000</sort_order>
@@ -26,7 +26,7 @@
           <show_in_store>1</show_in_store>  
           <fields>
 
-            <enablegimmi>
+            <gimmie_enable>
               <label>Enable Gimmie</label>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -34,25 +34,25 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </enablegimmi>
+            </gimmie_enable>
 
-            <consumerkey>
+            <consumer_key>
               <label>Consumer Key</label>
               <frontend_type>text</frontend_type>
               <sort_order>2</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </consumerkey>
+            </consumer_key>
 
-            <secretkey>
+            <secret_key>
               <label>Secret Key</label>
               <frontend_type>text</frontend_type>
               <sort_order>3</sort_order>
               <show_in_default>2</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </secretkey>
+            </secret_key>
 
             <country>
               <label>Country</label>
@@ -94,7 +94,7 @@
             </style>
 
 
-            <PurchaseExchangeDollar>
+            <purchase_exchange_dollar>
               <label>Amount [X]</label>
               <comment>
                 <![CDATA[Indicate amount to spend for points conversion]]>
@@ -104,10 +104,10 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                
-            </PurchaseExchangeDollar>
+            </purchase_exchange_dollar>
 
 
-            <PurchaseExchangePoints>
+            <purchase_exchange_points>
               <label>Points [Y]</label>
               <comment>
                 <![CDATA[Indicate point to award for amount spend]]>
@@ -117,10 +117,10 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                            
-            </PurchaseExchangePoints>
+            </purchase_exchange_points>
 
 
-            <topspenderyesno>
+            <gimmie_trigger_did_magento_user_spent_the_most>
               <label>Trigger event on monthly top spender</label>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -128,10 +128,10 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </topspenderyesno>
+            </gimmie_trigger_did_magento_user_spent_the_most>
 
 
-            <referralyesno>
+            <gimmie_trigger_did_magento_user_referral_other_user>
               <label>Trigger event when referral</label>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -139,10 +139,10 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </referralyesno>
+            </gimmie_trigger_did_magento_user_referral_other_user>
 
 
-            <purchaseyesno>
+            <gimmie_trigger_did_magento_user_purchased_item>
               <label>Trigger event when purchase </label>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -150,9 +150,9 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </purchaseyesno>
+            </gimmie_trigger_did_magento_user_purchased_item>
 
-            <birthdaymonthyesno>
+            <gimmie_trigger_did_magento_user_born_this_month>
               <label>Trigger event when purchase during birthday month</label>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -160,7 +160,7 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </birthdaymonthyesno>
+            </gimmie_trigger_did_magento_user_born_this_month>
 
 
             <notificationtimeout>

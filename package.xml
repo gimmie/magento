@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+    <name>Gimmie</name>
+    <version>1.0.0</version>
+    <stability>devel</stability>
+    <license>MIT</license>
+    <channel>http://connect.magentocommerce.com/community</channel>
+    <extends/>
+    <summary>Giving out points and Gimmie rewards when user do action in board (e.g. post a new topic that contains word in settings or logging in to webboard).</summary>
+    <description>Giving out points and Gimmie rewards when user do action in board (e.g. post a new topic that contains word in settings or logging in to webboard).&#xD;
+&#xD;
+User can&#xD;
+- Enable or disabled it and change key for giving out different set of rewards.&#xD;
+- Set which event that will trigger the event and give out points. Currently setting has login, post, create poll, vote poll.&#xD;
+- Set keywords and board. So not user posts trigger points.&#xD;
+- Notification popup and rewards view for redeeming rewards.&#xD;
+- Rewards view include profile and leaderboard which can disable in settings.&#xD;
+- CSS and popup text settings&#xD;
+</description>
+    <notes>Under development</notes>
+    <authors><author><name>Gimmieworld pte ltd.</name><user>gimmie</user><email>maythee@gimmieworld.com</email></author></authors>
+    <date>2014-03-07</date>
+    <time>06:08:24</time>
+    <contents></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.3.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

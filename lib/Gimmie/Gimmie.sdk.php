@@ -1,8 +1,6 @@
 <?php
-// vim: foldmethod=marker
+error_reporting(1);
 
-/* Generic exception class
- */
 class OAuthException extends Exception {
   // pass
 }
@@ -42,9 +40,9 @@ class OAuthToken {
    */
   function to_string() {
     return "oauth_token=" .
-      OAuthUtil::urlencode_rfc3986($this->key) .
-      "&oauth_token_secret=" .
-      OAuthUtil::urlencode_rfc3986($this->secret);
+           OAuthUtil::urlencode_rfc3986($this->key) .
+           "&oauth_token_secret=" .
+           OAuthUtil::urlencode_rfc3986($this->secret);
   }
 
   function __toString() {
@@ -256,13 +254,13 @@ class OAuthRequest {
    */
   public static function from_request($http_method=NULL, $http_url=NULL, $parameters=NULL) {
     $scheme = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != "on")
-      ? 'http'
-      : 'https';
+              ? 'http'
+              : 'https';
     $http_url = ($http_url) ? $http_url : $scheme .
-      '://' . $_SERVER['SERVER_NAME'] .
-      ':' .
-      $_SERVER['SERVER_PORT'] .
-      $_SERVER['REQUEST_URI'];
+                              '://' . $_SERVER['SERVER_NAME'] .
+                              ':' .
+                              $_SERVER['SERVER_PORT'] .
+                              $_SERVER['REQUEST_URI'];
     $http_method = ($http_method) ? $http_method : $_SERVER['REQUEST_METHOD'];
 
     // We weren't handed any parameters, so let's find the ones relevant to
@@ -279,10 +277,10 @@ class OAuthRequest {
       // It's a POST request of the proper content-type, so parse POST
       // parameters and add those overriding any duplicates from GET
       if ($http_method == "POST"
-        &&  isset($request_headers['Content-Type'])
-        && strstr($request_headers['Content-Type'],
-          'application/x-www-form-urlencoded')
-      ) {
+          &&  isset($request_headers['Content-Type'])
+          && strstr($request_headers['Content-Type'],
+                     'application/x-www-form-urlencoded')
+          ) {
         $post_data = OAuthUtil::parse_parameters(
           file_get_contents(self::$POST_INPUT)
         );
@@ -309,9 +307,9 @@ class OAuthRequest {
   public static function from_consumer_and_token($consumer, $token, $http_method, $http_url, $parameters=NULL) {
     $parameters = ($parameters) ?  $parameters : array();
     $defaults = array("oauth_version" => OAuthRequest::$version,
-      "oauth_nonce" => OAuthRequest::generate_nonce(),
-      "oauth_timestamp" => OAuthRequest::generate_timestamp(),
-      "oauth_consumer_key" => $consumer->key);
+                      "oauth_nonce" => OAuthRequest::generate_nonce(),
+                      "oauth_timestamp" => OAuthRequest::generate_timestamp(),
+                      "oauth_consumer_key" => $consumer->key);
     if ($token)
       $defaults['oauth_token'] = $token->key;
 
@@ -403,9 +401,9 @@ class OAuthRequest {
     $path = (isset($parts['path'])) ? $parts['path'] : '';
 
     if (($scheme == 'https' && $port != '443')
-      || ($scheme == 'http' && $port != '80')) {
-        $host = "$host:$port";
-      }
+        || ($scheme == 'http' && $port != '80')) {
+      $host = "$host:$port";
+    }
     return "$scheme://$host$path";
   }
 
@@ -433,7 +431,7 @@ class OAuthRequest {
    */
   public function to_header($realm=null) {
     $first = true;
-    if($realm) {
+  if($realm) {
       $out = 'Authorization: OAuth realm="' . OAuthUtil::urlencode_rfc3986($realm) . '"';
       $first = false;
     } else
@@ -447,9 +445,9 @@ class OAuthRequest {
       }
       $out .= ($first) ? ' ' : ',';
       $out .= OAuthUtil::urlencode_rfc3986($k) .
-        '="' .
-        OAuthUtil::urlencode_rfc3986($v) .
-        '"';
+              '="' .
+              OAuthUtil::urlencode_rfc3986($v) .
+              '"';
       $first = false;
     }
     return $out;
@@ -586,8 +584,8 @@ class OAuthServer {
    */
   private function get_signature_method($request) {
     $signature_method = $request instanceof OAuthRequest
-      ? $request->get_parameter("oauth_signature_method")
-      : NULL;
+        ? $request->get_parameter("oauth_signature_method")
+        : NULL;
 
     if (!$signature_method) {
       // According to chapter 7 ("Accessing Protected Ressources") the signature-method
@@ -596,13 +594,13 @@ class OAuthServer {
     }
 
     if (!in_array($signature_method,
-      array_keys($this->signature_methods))) {
-        throw new OAuthException(
-          "Signature method '$signature_method' not supported " .
-          "try one of the following: " .
-          implode(", ", array_keys($this->signature_methods))
-        );
-      }
+                  array_keys($this->signature_methods))) {
+      throw new OAuthException(
+        "Signature method '$signature_method' not supported " .
+        "try one of the following: " .
+        implode(", ", array_keys($this->signature_methods))
+      );
+    }
     return $this->signature_methods[$signature_method];
   }
 
@@ -611,8 +609,8 @@ class OAuthServer {
    */
   private function get_consumer($request) {
     $consumer_key = $request instanceof OAuthRequest
-      ? $request->get_parameter("oauth_consumer_key")
-      : NULL;
+        ? $request->get_parameter("oauth_consumer_key")
+        : NULL;
 
     if (!$consumer_key) {
       throw new OAuthException("Invalid consumer key");
@@ -631,8 +629,8 @@ class OAuthServer {
    */
   private function get_token($request, $consumer, $token_type="access") {
     $token_field = $request instanceof OAuthRequest
-      ? $request->get_parameter('oauth_token')
-      : NULL;
+         ? $request->get_parameter('oauth_token')
+         : NULL;
 
     $token = $this->data_store->lookup_token(
       $consumer, $token_type, $token_field
@@ -650,11 +648,11 @@ class OAuthServer {
   private function check_signature($request, $consumer, $token) {
     // this should probably be in a different method
     $timestamp = $request instanceof OAuthRequest
-      ? $request->get_parameter('oauth_timestamp')
-      : NULL;
+        ? $request->get_parameter('oauth_timestamp')
+        : NULL;
     $nonce = $request instanceof OAuthRequest
-      ? $request->get_parameter('oauth_nonce')
-      : NULL;
+        ? $request->get_parameter('oauth_nonce')
+        : NULL;
 
     $this->check_timestamp($timestamp);
     $this->check_nonce($consumer, $token, $nonce, $timestamp);
@@ -743,18 +741,18 @@ class OAuthDataStore {
 
 class OAuthUtil {
   public static function urlencode_rfc3986($input) {
-    if (is_array($input)) {
-      return array_map(array('OAuthUtil', 'urlencode_rfc3986'), $input);
-    } else if (is_scalar($input)) {
-      return str_replace(
-        '+',
-        ' ',
-        str_replace('%7E', '~', rawurlencode($input))
-      );
-    } else {
-      return '';
-    }
+  if (is_array($input)) {
+    return array_map(array('OAuthUtil', 'urlencode_rfc3986'), $input);
+  } else if (is_scalar($input)) {
+    return str_replace(
+      '+',
+      ' ',
+      str_replace('%7E', '~', rawurlencode($input))
+    );
+  } else {
+    return '';
   }
+}
 
 
   // This decode function isn't taking into consideration the above
@@ -796,10 +794,10 @@ class OAuthUtil {
       $out = array();
       foreach ($headers AS $key => $value) {
         $key = str_replace(
-          " ",
-          "-",
-          ucwords(strtolower(str_replace("-", " ", $key)))
-        );
+            " ",
+            "-",
+            ucwords(strtolower(str_replace("-", " ", $key)))
+          );
         $out[$key] = $value;
       }
     } else {
@@ -892,4 +890,64 @@ class OAuthUtil {
   }
 }
 
-?>
+class Gimmie {
+  
+  private static $instance;
+  private $gimmie_root = 'https://api.gimmieworld.com';
+  
+  public static function getInstance($key, $secret) {
+    if (!$instance) {
+      $instance = new Gimmie($key, $secret);
+    }
+    return $instance;
+  }
+  
+  function __construct($key, $secret) {
+    $this->key = $key;
+    $this->secret = $secret;
+  }
+  
+  public function login($user_id) {
+    $this->user_id = $user_id;
+  }
+  
+  public function trigger_with_name($name) {
+    $parameters = array(
+      'event_name' => $name
+    );
+    return $this->invoke('trigger', $parameters);
+  }
+  
+  public function change_points($change, $description) {
+    $parameters = array(
+      'points' => $change
+    );
+    return $this->invoke('change_points', $parameters);
+  }
+  
+  private function invoke($action, $parameters) {
+    // Don't run anything if user doesn't login
+    if (!isset($this->user_id)) return;
+  
+    $gimmie_root = $this->gimmie_root;
+    $endpoint = "$gimmie_root/1/$action.json?".implode('&', $parameters);
+    
+    $key = $this->key;
+    $secret = $this->secret;
+    
+    $access_token = $this->user_id;
+    $access_token_secret = $secret;
+    
+    $sig_method = new OAuthSignatureMethod_HMAC_SHA1();
+    $consumer = new OAuthConsumer($key, $secret, NULL);
+    $token = new OAuthConsumer($access_token, $access_token_secret);
+    
+    $acc_req = OAuthRequest::from_consumer_and_token($consumer, $token, 'GET', $endpoint, $parameters);
+    $acc_req->sign_request($sig_method, $consumer, $token);
+    
+    $json = file_get_contents($acc_req);
+    
+    return $json;
+  }
+  
+}

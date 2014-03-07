@@ -6,6 +6,7 @@
     </Gimmie_Customerpage>
   </modules>
   <global>
+  
     <events>
       <controller_front_init_before>
         <observers>
@@ -23,14 +24,12 @@
         <observers>
           <Gimmie_Customerpage>
             <class>Gimmie_Customerpage_Model_observer</class>
-            <method>PointForReferrer</method>
+            <method>triggerReferral</method>
             <type>singleton</type>
           </Gimmie_Customerpage>        
         </observers>
       </customer_register_success>
     </events>
-
-
 
     <events>
       <sales_order_save_commit_after>
@@ -38,24 +37,20 @@
           <myPurchasePoint>
             <type>model</type>
             <class>Gimmie_Customerpage_Model_Observer</class>
-            <method>myPurchasePoint</method>
+            <method>giveoutPointsAndTriggerPurchased</method>
           </myPurchasePoint>
         </observers>
       </sales_order_save_commit_after>
     </events>
 
-
   </global>
   <frontend>
-
 
     <blocks> <!--Block folder-->
       <customerpage>
         <class>Gimmie_Customerpage_Block</class>
       </customerpage>
     </blocks>
-
-
 
     <routers>
       <customerpage>
@@ -126,8 +121,6 @@
       </Gimmie_Customerpage>
     </models>
   </global>
-
-
 
   <crontab>
     <jobs>

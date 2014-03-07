@@ -1,5 +1,5 @@
 <?php
-require_once(Mage::getBaseDir('lib').'/Gimmie/OAuth.php');
+require_once(Mage::getBaseDir('lib').'/Gimmie/Gimmie.sdk.php');
 
 class Gimmie_Customerpage_Model_Observer 
 {
@@ -12,389 +12,105 @@ class Gimmie_Customerpage_Model_Observer
   );
 
   const COOKIE_KEY_SOURCE = 'gimmie_customerpage_source';
-
-  public function myPurchasePoint($event)
-  {
-    $order = $event->getOrder();
-    // $orderStatus = $order->getStatus();
-    $dfd=Mage::getStoreConfig('Gimmie');
-    if ($order->getState() ==Mage_Sales_Model_Order::STATE_COMPLETE)
-
-
-      if($dfd['messages']['enablegimmi']==1)
-      {
-
-        $id= $order->getId();
-
-        //$orderds = Mage::getModel('sales/order')->load($id);
-
-
-        $order=Mage::getModel('sales/order')->load($id);
-
-
-
-
-        $my_player_uid =$order->getCustomerEmail();
-
-
-        $player_name = $order->getCustomerFirstname();;
-
-
-        $player_email =$order->getCustomerEmail();
-
-        $DOB=$order->getCustomerDob();
-
-        $date=date("Y-m-d",strtotime($DOB));
-
-
-        $toGetMonth = explode("-",$date);
-
-        $birthdayMonth=$toGetMonth[1];
-
-
-        $currentMonth=date('m');   
-
-        $amountWithoutTax = $order->getGrandTotal() - $order->getShippingAmount();  
-
-
-        $Point=$dfd['messages']['PurchaseExchangePoints'];
-
-
-        $amount=$dfd['messages']['PurchaseExchangeDollar'];
-
-
-
-
-        $pointGot=$amountWithoutTax/$amount;
-
-        $pointToBeGranted=number_format($pointGot*$Point);
-
-
-        $event_name=$this->gimmie['gimmie_trigger_purchase'];
-
-        $birthday_event_name=$this->gimmie['gimmie_trigger_birthdaypurchase'];
-
-        $event_status=$dfd['messages']['purchaseyesno'];
-
-        $birthday_event_status=$dfd['messages']['birthdaymonthyesno'];
-
-
-        $key =  $dfd['messages']['consumerkey'];
-
-
-        $secret = $dfd['messages']['secretkey'];
-
-
-
-        $access_token = $my_player_uid;
-        $access_token_secret = $secret;
-        $params = array();
-        $sig_method = new OAuthSignatureMethod_HMAC_SHA1();
-        $consumer = new OAuthConsumer($key, $secret, NULL);
-        $token = new OAuthConsumer($access_token, $access_token_secret);
-
-
-
-
-
-        if($event_status==1)
-        {
-
-          $endpoint = "https://api.gimmieworld.com/1/trigger.json?event_name=".$event_name;
-
-          $acc_req = OAuthRequest::from_consumer_and_token($consumer, $token, "GET",$endpoint, $params);
-          $acc_req->sign_request($sig_method, $consumer, $token);
-
-          $json = $this->curl_get_contents($acc_req);
-          $purchase_event_output = json_decode($json, TRUE);
-
-
-        }
-        if($birthday_event_status==1)
-        {
-
-          if($birthdayMonth==$currentMonth)
-          {
-
-
-
-
-            $endpoint = "https://api.gimmieworld.com/1/trigger.json?event_name=".$birthday_event_name."&source_uid=".date('Y');
-
-            $acc_req = OAuthRequest::from_consumer_and_token($consumer, $token, "GET",$endpoint, $params);
-            $acc_req->sign_request($sig_method, $consumer, $token);
-
-            $json = $this->curl_get_contents($acc_req);
-            $birthday_purchase_output = json_decode($json, TRUE);
-
-          }
-        }
-
-
-
-        if(isset($pointToBeGranted))
-        {
-
-          $endpoint = "https://api.gimmieworld.com/1/change_points.json?points=".$pointToBeGranted."&description=award ".$pointToBeGranted." for spending ".number_format($amountWithoutTax);
-          $acc_req = OAuthRequest::from_consumer_and_token($consumer, $token, "GET",$endpoint, $params);
-          $acc_req->sign_request($sig_method, $consumer, $token);
-
-          $json = $this->curl_get_contents($acc_req);
-          $points_for_eachpurchase_output = json_decode($json, TRUE);
-        }              
-
-        // }       
-
-      }
-
-
-
+  
+  private function getGimmie($config, $email) {
+    $key = $config['consumer_key'];
+    $secret = $config['secret_key'];
+    
+    $gimmie = Gimmie::getInstance($key, $secret);
+    $gimmie->login($email);
+    return $gimmie;
   }
-
-
-
-
-  public function floor_dec($number,$precision,$separator)
-  {
-    $numberpart=explode($separator,$number);
-    $numberpart[1]=substr_replace($numberpart[1],$separator,$precision,0);
-    if($numberpart[0]>=0)
-    {$numberpart[1]=floor($numberpart[1]);}
-    else
-    {$numberpart[1]=ceil($numberpart[1]);}
-
-    $ceil_number= array($numberpart[0],$numberpart[1]);
-    return implode($separator,$ceil_number);
-  }
-
-
-  public function curl_get_contents($url)
-  {
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-    $data = curl_exec($curl);
-    curl_close($curl);
-    return $data;
-  }
-
-
-
-
-
-  public function monthTopSpender(Varian_Event_Observer $observer)
-  {
-
-
-
-
-    $dfd=Mage::getStoreConfig('Gimmie');
-    if($dfd['messages']['enablegimmi']==1)
-    {
-
-      if($dfd['messages']['topspenderyesno']==1)
-      {
-
-
-
-
-
-        $year=date('Y');
-        $previousMonth= date('m', strtotime("-1 months"));
-        $currentMonth= date('m');
-
-
-        $todate= $year.'-'.$currentMonth.'-30 00:00:00';
-        $fromDate=$year.'-'.$previousMonth.'-01 00:00:00';
-
-
-
-
-        $read= Mage::getModel('sales/order')->getCollection()->getConnection('core_read');
-        $value=$read->query("SELECT * , SUM( grand_total ) AS `grand_total` FROM `sales_flat_order` WHERE (created_at >= '".$fromDate."') AND (created_at <='".$todate."') AND  `status` =  'complete'
-          ORDER BY `grand_total`    DESC LIMIT 0,1");
-        $row = $value->fetch();
-
-
-
-
-
-        $firstname = $row['customer_firstname'];
-
-
-        $lastname = $row['customer_lastname'];
-
-
-        $email = $row['customer_email'];
-
-
-
-
-        //$country = $customer->getDefaultBillingAddress()->getCountry();
-
-        $event_name=$this->gimmie['gimmie_trigger_topspender'];
-
-        $my_player_uid =$email;
-
-        $player_name = $lastname;
-
-
-        $player_email =$email;
-
-
-
-
-        $key = $dfd['messages']['consumerkey'];
-
-
-
-        $secret =$dfd['messages']['secretkey'];
-
-
-        $access_token = $my_player_uid;
-        $access_token_secret = $secret;
-        $params = array();
-        $sig_method = new OAuthSignatureMethod_HMAC_SHA1();
-        $consumer = new OAuthConsumer($key, $secret, NULL);
-        $token = new OAuthConsumer($access_token, $access_token_secret);
-
-        // usage
-        $endpoint = "https://api.gimmieworld.com/1/trigger.json?event_name=".$event_name;
-        $acc_req = OAuthRequest::from_consumer_and_token($consumer, $token, "GET", $endpoint, $params);
-        $acc_req->sign_request($sig_method, $consumer, $token);
-
-        $json = $this->curl_get_contents($acc_req);
-        $leaderboard_output = json_decode($json, TRUE);
-
-
-
-
-        return $leaderboard_output;
-      }
-    }
-
-
-
-  }
-
-
-
+  
   public function captureReferral(Varien_Event_Observer $observer)
   {
-
-
-
-
     $utmSource =$_GET['id'];
 
     if ($utmSource) {
       // here we will save the referrer affiliate ID
-
       Mage::getModel('core/cookie')->set(
         self::COOKIE_KEY_SOURCE, 
         $utmSource, 
-        $this->_getCookieLifetime());
-
-      //Mage::getSingleton('core/session')->setMyReffereal($utmSource); 
+        30 * 86400);
     }
 
-    $dfd=Mage::getStoreConfig('Gimmie');
-
-
-    //echo Mage::getSingleton('core/session')->getMyReffereal($utmSource); 
-
+    $dfd = Mage::getStoreConfig('Gimmie');
   }
+  
+  public function triggerReferral($event) {
+  
+    $event = 'did_magento_user_referral_other_user';
+    $config = Mage::getStoreConfig('Gimmie')['message'];
 
+    if ($config['gimmie_enabled'] && $config['gimmie_trigger_'.$event]) {
+      $id= Mage::getModel('core/cookie')->get(
+        Gimmie_Customerpage_Model_Observer::COOKIE_KEY_SOURCE
+      );
 
-  protected function _getCookieLifetime()
-  {
-    $days = 30;
+      $customerData = Mage::getModel('customer/customer')->load($id)->getData();
+      $email = $customerData['email'];
 
-    // convert to seconds
-    return (int)86400 * $days;
+      $this->getGimmie($config, $email)->trigger($event);
+    }
   }
-
-
-  public function PointForReferrer(Varien_Event_Observer $observer)
+  
+  public function giveoutPointsAndTriggerPurchased($event)
   {
+    $config = Mage::getStoreConfig('Gimmie')['message'];
+    if ($order->getState() == Mage_Sales_Model_Order::STATE_COMPLETE && $config['gimmie_enabled']) {
+    
+      $order_id = $event->getOrder()->getId();
+      $order = Mage::getModel('sales/order')->load($order_id);
+      $email = $order->getCustomerEmail();
 
-
-
-
-
-
-
-    $dfd=Mage::getStoreConfig('Gimmie');
-
-
-    if($dfd['messages']['enablegimmi']==1)
-    {
-
-      if($dfd['messages']['referralyesno']==1)
-      {
-
-        $id= Mage::getModel('core/cookie')->get(
-          Gimmie_Customerpage_Model_Observer::COOKIE_KEY_SOURCE
-        );
-
-
-
-
-
-        $customerData = Mage::getModel('customer/customer')->load($id)->getData();
-
-        $firstname = $customerData['firstname'];
-        /* Get the customer's last name */
-        $lastname = $customerData['lastname'];
-        /* Get the customer's email address */
-        $email = $customerData['email'];
-
-        $country=$dfd['messages']['country'];
-
-        $my_player_uid = $email;
-
-        $player_name = $lastname;
-
-        $player_email =$email;  
-
-        $key =  $dfd['messages']['consumerkey'];
-
-        $secret = $dfd['messages']['secretkey'];
-
-
-
-        $event_name=$this->gimmie['gimmie_trigger_referral'];
-        $access_token = $my_player_uid;
-        $access_token_secret = $secret;
-        $params = array();
-        $sig_method = new OAuthSignatureMethod_HMAC_SHA1();
-        $consumer = new OAuthConsumer($key, $secret, NULL);
-        $token = new OAuthConsumer($access_token, $access_token_secret);
-
-        // usage
-        $endpoint = "https://api.gimmieworld.com/1/trigger.json?event_name=".$event_name;
-
-
-        $acc_req = OAuthRequest::from_consumer_and_token($consumer, $token, "GET", $endpoint, $params);
-        $acc_req->sign_request($sig_method, $consumer, $token);
-
-        $json = file_get_contents($acc_req);
-        $leaderboard_output = json_decode($json, TRUE);
-
-
-
-
-        return $leaderboard_output;
-
-
+      $purchased_event = 'did_magento_user_purchased_item';
+      if ($config["gimmie_trigger_$purchased_event"]) {
+        $this->getGimmie($config, $email)->trigger($purchased_event);
       }
+      
+      $birthMonth = getdate(strtotime($order->getCustomerDob()))['mon'];
+      $currentMonth = date('n');
+        
+      $birthmonth_event = 'did_magento_user_born_this_month';
+      if ($config["gimmie_trigger_$birthmonth_event"] && ($birthMonth == $currentMonth)) {
+        $this->getGimmie($config, $email)->trigger($birthmonth_event);
+      }
+      
+      $amountWithoutTax = $order->getGrandTotal() - $order->getShippingAmount();
+      
+      $dollarExchanges = is_numeric($config['purchase_exchange_dollar']) ? intval($config['purchase_exchange_dollar']) : -1;
+      $pointsExchanges = is_numeric($config['purchase_exchange_points']) ? intval($config['purchase_exchange_points']) : -1;
+      
+      if (is_numeric($amountWithoutTax) && $amountWithoutTax > 0 && $dollarExchanges > 0 && $pointsExchanges > 0) {
+        $totalPoints = $amountWithoutTax / $dollarExchanges * $pointsExchanges;
+        $this->getGimmie($config, $email)->change_points($totalPoints, "Award $totalPoints for spending $amountWithoutTax");
+      }
+      
+    }
+  }
 
+  public function monthTopSpender(Varian_Event_Observer $observer) {
 
+    $event = 'did_magento_user_spent_the_most';
+    $config = Mage::getStoreConfig('Gimmie')['messages'];
+    if ($config['gimmie_enabled'] && $config["gimmie_trigger_$event"]) {
+    
+      $date = getdate(strtotime('-1 months'));
+      $targetMonth = $date['mon'];
+      $targetYear = $date['year'];
+      
+      $first = date('Y-m-d', mktime(0, 0, 0, $targetMonth, 1, $targetYear));
+      $last = date('Y-m-t', mktime(0, 0, 0, $targetMonth, 1, $targetYear));
+      
+      $read = Mage::getModel('sales/order')->getCollection()->getConnection('core_read');
+      $cursor = $read->query('SELECT * , SUM( grand_total ) AS `grand_total` FROM `sales_flat_order` WHERE (created_at >= :from) AND (created_at <= :to) AND `status` = "complete" ORDER BY `grand_total`    DESC LIMIT 0,1', array('from' => $first, 'to': $last));
+      $row = $cursor->fetch();
+      
+      $email = $row['customer_email'];
+      $this->getGimmie($config, $email)->trigger($event);
     }
 
-  }  
+  }
 
   public function toOptionArray()
   {
