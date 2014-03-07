@@ -20,13 +20,13 @@ $style=$dfd['messages']['style'];
 $responsivewidgetyesno=$dfd['messages']['responsivewidgetyesno'];
 if($responsivewidgetyesno==1)
 {
-    $responsivewidgetyesno='false';
-    
+  $responsivewidgetyesno='false';
+
 }   
 else
 {
-    
-     $responsivewidgetyesno='true';
+
+  $responsivewidgetyesno='true';
 }    
 
 
@@ -35,13 +35,13 @@ $rewardtabyesno=$dfd['messages']['rewardtabyesno'];
 
 if($rewardtabyesno==1)
 {
-    $rewardtabyesno='false';
-    
+  $rewardtabyesno='false';
+
 }   
 else
 {
-    
-     $rewardtabyesno='true';
+
+  $rewardtabyesno='true';
 }
 
 
@@ -49,13 +49,13 @@ else
 $profiletabyesno=$dfd['messages']['profiletabyesno'];
 if($profiletabyesno==1)
 {
-    $profiletabyesno='false';
-    
+  $profiletabyesno='false';
+
 }   
 else
 {
-    
-     $profiletabyesno='true';
+
+  $profiletabyesno='true';
 } 
 
 
@@ -63,13 +63,13 @@ else
 $profileredemptionyesno=$dfd['messages']['profileredemptionyesno'];
 if($profileredemptionyesno==1)
 {
-    $profileredemptionyesno='true';
-    
+  $profileredemptionyesno='true';
+
 }   
 else
 {
-    
-     $profileredemptionyesno='false';
+
+  $profileredemptionyesno='false';
 }
 
 
@@ -77,79 +77,79 @@ else
 $profileactivitiesyesno=$dfd['messages']['profileactivitiesyesno'];
 if($profileactivitiesyesno==1)
 {
-    $profileactivitiesyesno='true';
-    
+  $profileactivitiesyesno='true';
+
 }   
 else
 {
-    
-     $profileactivitiesyesno='false';
+
+  $profileactivitiesyesno='false';
 }
 
 
 $leaderboardyesno=$dfd['messages']['leaderboardyesno'];
 if($leaderboardyesno==1)
 {
-    $leaderboardyesno='false';
-    
+  $leaderboardyesno='false';
+
 }   
 else
 {
-    
-     $leaderboardyesno='true';
+
+  $leaderboardyesno='true';
 }
 
 
 $leaderboardmostpointsyesno=$dfd['messages']['leaderboardmostpointsyesno'];
 if($leaderboardmostpointsyesno==1)
 {
-    $leaderboardmostpointsyesno='true';
-    
+  $leaderboardmostpointsyesno='true';
+
 }   
 else
 {
-    
-     $leaderboardmostpointsyesno='false';
+
+  $leaderboardmostpointsyesno='false';
 }
 
 
 $leaderboardmostrewardsyesno=$dfd['messages']['leaderboardmostrewardsyesno'];
 if($leaderboardmostrewardsyesno==1)
 {
-    $leaderboardmostrewardsyesno='true';
-    
+  $leaderboardmostrewardsyesno='true';
+
 }   
 else
 {
-    
-     $leaderboardmostrewardsyesno='false';
+
+  $leaderboardmostrewardsyesno='false';
 }
 
 
 $leaderboardmostvalueyesno=$dfd['messages']['leaderboardmostvalueyesno'];
 if($leaderboardmostvalueyesno==1)
 {
-    $leaderboardmostvalueyesno='true';
-    
+  $leaderboardmostvalueyesno='true';
+
 }   
 else
 {
-    
-     $leaderboardmostvalueyesno='false';
+
+  $leaderboardmostvalueyesno='false';
 }
-  $customer = Mage::getSingleton('customer/session')->getCustomer();
+$customer = Mage::getSingleton('customer/session')->getCustomer();
 
 
-  $firstname = $customer->getFirstname();
-  $lastname = $customer->getLastname();
-  $email = $customer->getEmail();
+$firstname = $customer->getFirstname();
+$lastname = $customer->getLastname();
+$email = $customer->getEmail();
 
 ?>
 
 
 
 <ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
-	
+
 <?php
 if($enablegimmie=="1" && $customer->getId())
 {
@@ -159,7 +159,7 @@ if($enablegimmie=="1" && $customer->getId())
 
 
 <?php 
-  
+
 }
 ?>
 
@@ -170,60 +170,60 @@ if($enablegimmie=="1" && $customer->getId())
 
 
        <div id="gimmie-root"></div>
-                  <script type="text/javascript">
-                        var _gimmie = {
-                          "endpoint"                    : "http://www.gimmieworld.com/demo/gimmie-test/gimmie-connect.php?player=<?php echo $email; ?>&key=<?php echo $consumerkey; ?>&secret=<?php echo $sectetkey; ?>&logout=true&&gimmieapi=",
-                          "gimmie_endpoint"             : "http://api.gimmieworld.com", // An optional endpoint for bypassing secret authentication
-                          "key"                         : "<?php echo $consumerkey; ?>",
-                          "country"                     : "<?php echo $country; ?>",
-                          "locale"                      : "<?php echo $locale; ?>",
-                          "user"                        : {
-                            "name"                      : "<?php echo $firstname; ?> <?php echo $lastname; ?>",
-                            "realname"                  : "<?php echo $firstname; ?> <?php echo $lastname ; ?>",
-                            "email"                     : "<?php echo $email; ?>",
-                            "avatar"                    : ""
+<script type="text/javascript">
+var _gimmie = {
+  "endpoint"                    : "http://www.gimmieworld.com/demo/gimmie-test/gimmie-connect.php?player=<?php echo $email; ?>&key=<?php echo $consumerkey; ?>&secret=<?php echo $sectetkey; ?>&logout=true&&gimmieapi=",
+    "gimmie_endpoint"             : "http://api.gimmieworld.com", // An optional endpoint for bypassing secret authentication
+    "key"                         : "<?php echo $consumerkey; ?>",
+    "country"                     : "<?php echo $country; ?>",
+    "locale"                      : "<?php echo $locale; ?>",
+    "user"                        : {
+      "name"                      : "<?php echo $firstname; ?> <?php echo $lastname; ?>",
+        "realname"                  : "<?php echo $firstname; ?> <?php echo $lastname ; ?>",
+        "email"                     : "<?php echo $email; ?>",
+        "avatar"                    : ""
                           },    "options"                     : {
                             "animate"                   : true,
-                            "auto_show_notification"    : true,
-                            "notification_timeout"      : 8,
-                            "responsive"                : <?php echo $responsivewidgetyesno; ?>,
-                            "show_anonymous_rewards"    :  <?php echo $rewardtabyesno; ?>,
-                            "shuffle_reward"            : true,
-                            "default_level_icon"        : "",
-                            "pages"                     : {
-                              "catalog"                 : {
-                                "hide"                  : false
+                              "auto_show_notification"    : true,
+                              "notification_timeout"      : 8,
+                              "responsive"                : <?php echo $responsivewidgetyesno; ?>,
+                              "show_anonymous_rewards"    :  <?php echo $rewardtabyesno; ?>,
+                              "shuffle_reward"            : true,
+                              "default_level_icon"        : "",
+                              "pages"                     : {
+                                "catalog"                 : {
+                                  "hide"                  : false
                               },
                               "profile"                 : {
                                 "hide"                  :<?php echo $profiletabyesno; ?>,
-                                "redemptions"           :<?php echo $profileredemptionyesno; ?>,
-                                "mayorships"            : true,
-                                "badges"                : true,
-                                "activities"            :<?php echo $profileactivitiesyesno; ?>
+                                  "redemptions"           :<?php echo $profileredemptionyesno; ?>,
+                                  "mayorships"            : true,
+                                  "badges"                : true,
+                                  "activities"            :<?php echo $profileactivitiesyesno; ?>
                               },
                               "leaderboard"             : {
                                 "table"                 : "alltime", //alltime,thisweek,last7days,pastweek,today,last30days,pastmonth,thismonth
-                                "hide"                  :<?php echo $leaderboardyesno; ?>,
-                                "mostpoints"            :<?php echo $leaderboardmostpointsyesno; ?>,
-                                "mostrewards"           :<?php echo $leaderboardmostrewardsyesno; ?>,
-                                "mostvalues"            :<?php echo $profileactivitiesyesno; ?>
+                                  "hide"                  :<?php echo $leaderboardyesno; ?>,
+                                  "mostpoints"            :<?php echo $leaderboardmostpointsyesno; ?>,
+                                  "mostrewards"           :<?php echo $leaderboardmostrewardsyesno; ?>,
+                                  "mostvalues"            :<?php echo $profileactivitiesyesno; ?>
                               }
                             }
                           },
-                          "events"                      : {
-                            "widgetLoad"                : function () {
-                              console.log ('Loaded');
+                            "events"                      : {
+                              "widgetLoad"                : function () {
+                                console.log ('Loaded');
                             },
-                            "login"                     : function () {
-                              console.log ('Login');
+                              "login"                     : function () {
+                                console.log ('Login');
                             },
-                            "loadLeaderboard"           : function (data, cb) {
-                              //data
-                              cb(data);
+                              "loadLeaderboard"           : function (data, cb) {
+                                //data
+                                cb(data);
                             }
                           },
-                          "text"                        : {
-                            "help"                      : "<?php echo $help; ?>"
+                            "text"                        : {
+                              "help"                      : "<?php echo $help; ?>"
                           },
                           "templates"                   : {
                           }
@@ -237,7 +237,7 @@ if($enablegimmie=="1" && $customer->getId())
                           ref.parentNode.insertBefore(js, ref);
                         }(document));
                       </script>
-                      
+
        <style>
             <?php echo $style;?>
             </style>
