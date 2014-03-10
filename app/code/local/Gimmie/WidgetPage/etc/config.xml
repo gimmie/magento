@@ -1,20 +1,21 @@
 <?xml version="1.0"?>
 <config>
   <modules>
-    <Gimmie_Customerpage>
-      <version>0.4.0</version>
-    </Gimmie_Customerpage>
+    <Gimmie_WidgetPage>
+      <version>1.0.0</version>
+    </Gimmie_WidgetPage>
   </modules>
+  
   <global>
   
     <events>
       <controller_front_init_before>
         <observers>
-          <Gimmie_Customerpage>
-            <class>Gimmie_Customerpage_Model_observer</class>
+          <Gimmie_WidgetPage>
+            <class>Gimmie_WidgetPage_Model_observer</class>
             <method>captureReferral</method>
             <type>singleton</type>
-          </Gimmie_Customerpage>
+          </Gimmie_WidgetPage>
         </observers>
       </controller_front_init_before>
     </events>
@@ -22,11 +23,11 @@
     <events>
       <customer_register_success>
         <observers>
-          <Gimmie_Customerpage>
-            <class>Gimmie_Customerpage_Model_observer</class>
+          <Gimmie_WidgetPage>
+            <class>Gimmie_WidgetPage_Model_observer</class>
             <method>triggerReferral</method>
             <type>singleton</type>
-          </Gimmie_Customerpage>        
+          </Gimmie_WidgetPage>        
         </observers>
       </customer_register_success>
     </events>
@@ -34,11 +35,11 @@
     <events>
       <sales_order_save_commit_after>
         <observers>
-          <myPurchasePoint>
+          <Gimmie_WidgetPage>
             <type>model</type>
-            <class>Gimmie_Customerpage_Model_Observer</class>
+            <class>Gimmie_WidgetPage_Model_observer</class>
             <method>giveoutPointsAndTriggerPurchased</method>
-          </myPurchasePoint>
+          </Gimmie_WidgetPage>
         </observers>
       </sales_order_save_commit_after>
     </events>
@@ -46,7 +47,6 @@
   </global>
   
   <frontend>
-  
     
     <layout>
       <updates>
@@ -68,10 +68,10 @@
         
         <admin>
           <children>
-            <Gimmie_Customerpage>
-              <title>Gimmie_Customerpage</title>
+            <Gimmie_WidgetPage>
+              <title>Gimmie_WidgetPage</title>
               <sort_order>10</sort_order>
-            </Gimmie_Customerpage>
+            </Gimmie_WidgetPage>
           </children>
         </admin>
 
@@ -99,24 +99,21 @@
   <global>
   
     <models>
-      <Gimmie_Customerpage>
-        <class>Gimmie_Customerpage_Model</class>
-      </Gimmie_Customerpage>
+      <Gimmie_WidgetPage>
+        <class>Gimmie_WidgetPage_Model</class>
+      </Gimmie_WidgetPage>
     </models>
     
   </global>
 
   <crontab>
     <jobs>
-      <Gimmie_Customerpage>
+      <Gimmie_WidgetPage>
         <schedule> <cron_expr>00 00 1 * *</cron_expr></schedule>
-        <run><model>Gimmie_Customerpage/observer::monthTopSpender</model></run>
-      </Gimmie_Customerpage>
+        <run><model>Gimmie_WidgetPage/observer::monthTopSpender</model></run>
+      </Gimmie_WidgetPage>
 
     </jobs>
   </crontab>
-
-
-
 
 </config> 

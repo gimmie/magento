@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
   <modules>
-    <Gimmie_Customerpage>
+    <Gimmie_WidgetPage>
       <active>true</active>
       <codePool>local</codePool>
-    </Gimmie_Customerpage>
+    </Gimmie_WidgetPage>
   </modules>
 </config> 

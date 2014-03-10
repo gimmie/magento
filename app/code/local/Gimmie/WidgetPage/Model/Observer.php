@@ -1,7 +1,7 @@
 <?php
 require_once(Mage::getBaseDir('lib').'/Gimmie/Gimmie.sdk.php');
 
-class Gimmie_Customerpage_Model_Observer
+class Gimmie_WidgetPage_Model_Observer
 {
 
   var $gimmie = Array(
@@ -11,7 +11,7 @@ class Gimmie_Customerpage_Model_Observer
     "gimmie_trigger_referral" => "did_referral"
   );
 
-  const COOKIE_KEY_SOURCE = 'gimmie_customerpage_source';
+  const COOKIE_KEY_SOURCE = 'gimmie_widgetpage_source';
 
   private function getConfig() {
     $dfd = Mage::getStoreConfig('Gimmie');
