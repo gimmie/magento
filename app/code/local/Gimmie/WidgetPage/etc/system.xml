@@ -17,15 +17,16 @@
       <show_in_store>1</show_in_store>   
 
       <groups>
-        <messages translate="label">
-          <label>please give following fields</label>
+        <general translate="label">
+          <label>General Gimmie Settings</label>
           <frontend_type>text</frontend_type>
           <sort_order>1</sort_order>
+          
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
           <show_in_store>1</show_in_store>  
+          
           <fields>
-
             <gimmie_enable>
               <label>Enable Gimmie</label>
               <frontend_type>select</frontend_type>
@@ -63,7 +64,7 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>  
             </country>
-
+            
             <locale>
               <label>Locale</label>
               <frontend_type>text</frontend_type>
@@ -72,28 +73,23 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>  
             </locale>
-
-
-            <help>
-              <label>Help</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>6</sort_order>
-              <show_in_default>2</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>  
-            </help>
-
-
-            <style>
-              <label>Style</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>7</sort_order>
-              <show_in_default>2</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>  
-            </style>
-
-
+            
+          </fields>
+          
+        </general>
+        
+        <points translate="label">
+        
+          <label>Points and Event Triggers</label>
+          
+          <frontend_type>text</frontend_type>
+          <sort_order>2</sort_order>
+          
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>  
+          
+          <fields>
             <purchase_exchange_dollar>
               <label>Amount [X]</label>
               <comment>
@@ -161,112 +157,12 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
             </gimmie_trigger_did_magento_user_born_this_month>
-
-
-            <notificationtimeout>
-              <label>Hide Notification (in seconds)</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>22</sort_order>
-              <show_in_default>10 </show_in_default>
-              <show_in_website>10</show_in_website>
-              <show_in_store>10</show_in_store>                    
-            </notificationtimeout>
-
-
-            <responsivewidgetyesno>
-              <label>Set to responsive widget.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>23</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </responsivewidgetyesno>
-
-
-            <rewardtabyesno>
-              <label>To display reward tab.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>26</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </rewardtabyesno>
-
-            <profiletabyesno>
-              <label>To display profile tab.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>27</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </profiletabyesno>
-
-
-            <profileredemptionyesno>
-              <label>To display profile redemptions.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>28</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </profileredemptionyesno>
-
-            <profileactivitiesyesno>
-              <label>To display profile activities.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>29</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </profileactivitiesyesno>
-
-            <leaderboardyesno>
-              <label>To display leaderboard.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>30</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </leaderboardyesno>
-
-            <leaderboardmostpointsyesno>
-              <label>To display leaderboard - most points.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>31</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </leaderboardmostpointsyesno>
-
-            <leaderboardmostrewardsyesno>
-              <label>To display leaderboard - most rewards.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>32</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </leaderboardmostrewardsyesno>
-
-            <leaderboardmostvalueyesno>
-              <label>To display leaderboard - most values.</label>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>33</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </leaderboardmostvalueyesno>
-          </fields>                            
-        </messages>
+          </fields>
+        
+        </points>
+      
       </groups>                 
+      
     </Gimmie>
   </sections>     
 </config>

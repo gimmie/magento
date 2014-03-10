@@ -4,21 +4,15 @@ require_once(Mage::getBaseDir('lib').'/Gimmie/Gimmie.sdk.php');
 class Gimmie_WidgetPage_Model_Observer
 {
 
-  var $gimmie = Array(
-    "gimmie_trigger_purchase" => "did_purchase",
-    "gimmie_trigger_topspender" => "top_spender",
-    "gimmie_trigger_birthdaypurchase" => "did_birthday_purchase",
-    "gimmie_trigger_referral" => "did_referral"
-  );
-
   const COOKIE_KEY_SOURCE = 'gimmie_widgetpage_source';
 
-  private function getConfig() {
+  private function getConfig($name) {
     $dfd = Mage::getStoreConfig('Gimmie');
-    return $dfd['message'];
+    return $dfd[$name];
   }
 
-  private function getGimmie($config, $email) {
+  private function getGimmie($email) {
+    $config = $this->getConfig('general');
     $key = $config['consumer_key'];
     $secret = $config['secret_key'];
 
@@ -29,7 +23,7 @@ class Gimmie_WidgetPage_Model_Observer
 
   public function captureReferral(Varien_Event_Observer $observer)
   {
-    $utmSource =$_GET['id'];
+    $utmSource = $_GET['id'];
 
     if ($utmSource) {
       // here we will save the referrer affiliate ID
@@ -38,15 +32,14 @@ class Gimmie_WidgetPage_Model_Observer
         $utmSource,
         30 * 86400);
     }
-
-    $dfd = Mage::getStoreConfig('Gimmie');
   }
 
   public function triggerReferral($event) {
     $event = 'did_magento_user_referral_other_user';
-    $config = $this->getConfig();
+    $generalConfig = $this->getConfig('general');
+    $pointsConfig = $this->getConfig('points');
 
-    if ($config['gimmie_enabled'] && $config['gimmie_trigger_'.$event]) {
+    if ($generalConfig['gimmie_enabled'] && $pointsConfig['gimmie_trigger_'.$event]) {
       $id= Mage::getModel('core/cookie')->get(
         Gimmie_Customerpage_Model_Observer::COOKIE_KEY_SOURCE
       );
@@ -54,22 +47,23 @@ class Gimmie_WidgetPage_Model_Observer
       $customerData = Mage::getModel('customer/customer')->load($id)->getData();
       $email = $customerData['email'];
 
-      $this->getGimmie($config, $email)->trigger($event);
+      $this->getGimmie($email)->trigger($event);
     }
   }
 
   public function giveoutPointsAndTriggerPurchased($event)
   {
-    $config = $this->getConfig();
-    if ($order->getState() == Mage_Sales_Model_Order::STATE_COMPLETE && $config['gimmie_enabled']) {
+    $generalConfig = $this->getConfig('general');
+    $pointsConfig = $this->getConfig('points');
+    if ($order->getState() == Mage_Sales_Model_Order::STATE_COMPLETE && $generalConfig['gimmie_enabled']) {
 
       $order_id = $event->getOrder()->getId();
       $order = Mage::getModel('sales/order')->load($order_id);
       $email = $order->getCustomerEmail();
 
       $purchased_event = 'did_magento_user_purchased_item';
-      if ($config["gimmie_trigger_$purchased_event"]) {
-        $this->getGimmie($config, $email)->trigger($purchased_event);
+      if ($pointsConfig["gimmie_trigger_$purchased_event"]) {
+        $this->getGimmie($email)->trigger($purchased_event);
       }
 
       $date = getdate(strtotime($order->getCustomerDob()));
@@ -77,18 +71,18 @@ class Gimmie_WidgetPage_Model_Observer
       $currentMonth = date('n');
 
       $birthmonth_event = 'did_magento_user_born_this_month';
-      if ($config["gimmie_trigger_$birthmonth_event"] && ($birthMonth == $currentMonth)) {
-        $this->getGimmie($config, $email)->trigger($birthmonth_event);
+      if ($pointsConfig["gimmie_trigger_$birthmonth_event"] && ($birthMonth == $currentMonth)) {
+        $this->getGimmie($email)->trigger($birthmonth_event);
       }
 
       $amountWithoutTax = $order->getGrandTotal() - $order->getShippingAmount();
 
-      $dollarExchanges = is_numeric($config['purchase_exchange_dollar']) ? intval($config['purchase_exchange_dollar']) : -1;
-      $pointsExchanges = is_numeric($config['purchase_exchange_points']) ? intval($config['purchase_exchange_points']) : -1;
+      $dollarExchanges = is_numeric($pointsConfig['purchase_exchange_dollar']) ? intval($pointsConfig['purchase_exchange_dollar']) : -1;
+      $pointsExchanges = is_numeric($pointsConfig['purchase_exchange_points']) ? intval($pointsConfig['purchase_exchange_points']) : -1;
 
       if (is_numeric($amountWithoutTax) && $amountWithoutTax > 0 && $dollarExchanges > 0 && $pointsExchanges > 0) {
         $totalPoints = $amountWithoutTax / $dollarExchanges * $pointsExchanges;
-        $this->getGimmie($config, $email)->change_points($totalPoints, "Award $totalPoints for spending $amountWithoutTax");
+        $this->getGimmie($email)->change_points($totalPoints, "Award $totalPoints for spending $amountWithoutTax");
       }
 
     }
@@ -97,8 +91,10 @@ class Gimmie_WidgetPage_Model_Observer
   public function monthTopSpender(Varian_Event_Observer $observer) {
 
     $event = 'did_magento_user_spent_the_most';
-    $config = $this->getConfig();
-    if ($config['gimmie_enabled'] && $config["gimmie_trigger_$event"]) {
+    $generalConfig = $this->getConfig('general');
+    $pointsConfig = $this->getConfig('points');
+    
+    if ($generalConfig['gimmie_enabled'] && $pointsConfig["gimmie_trigger_$event"]) {
 
       $date = getdate(strtotime('-1 months'));
       $targetMonth = $date['mon'];
@@ -112,7 +108,7 @@ class Gimmie_WidgetPage_Model_Observer
       $row = $cursor->fetch();
 
       $email = $row['customer_email'];
-      $this->getGimmie($config, $email)->trigger($event);
+      $this->getGimmie($email)->trigger($event);
     }
 
   }

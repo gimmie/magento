@@ -47,6 +47,16 @@
   </global>
   
   <frontend>
+  
+    <routers>
+      <widgetpage>
+        <use>standard</use>
+        <args>
+          <module>Gimmie_WidgetPage</module>
+          <frontName>gimmie</frontName>
+        </args>
+      </widgetpage>
+    </routers>
     
     <layout>
       <updates>
