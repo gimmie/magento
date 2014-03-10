@@ -1,6 +1,44 @@
+<?php
+  $country = Mage::getStoreConfig('Gimmie/general/country');
+  if ($country == 'auto') {
+    $ip = Mage::helper('core/http')->getRemoteAddr();
+    $country = trim(file_get_contents('http://api.wipmania.com/'.$ip));
+  }
+  
+  $customer = Mage::getSingleton('customer/session')->getCustomer()->getData();
+  $name = htmlspecialchars($customer['firstname'].' '.$customer['lastname']);
+  $email = $customer['email'];
+?>
 <script type="text/javascript">
   window._gimmie = {
-
+	    "endpoint"                    : "http://demo.gimmieworld.com/magento/index.php/gimmie/index/proxy?target=",
+	    "key"                         : "<?php echo Mage::getStoreConfig('Gimmie/general/consumer_key'); ?>",
+	    "country"                     : "<?php echo $country; ?>",        
+	    "user"                        : {
+	        "external_uid"              : "<?php echo $email; ?>",
+	        // Display name
+	        "name"                      : "<?php echo $name; ?>",
+	        // Gateway name
+	        "realname"                  : "<?php echo $name; ?>",
+	        "email"                     : "<?php echo $email; ?>"
+	    },
+	    "options"                     : {
+	      "animate"                   : true,
+	      "auto_show_notification"    : true,
+	      "notification_timeout"      : 10,
+	      "responsive"                : true,
+	      "show_anonymous_rewards"    : true,
+	      "shuffle_reward"            : true,
+	      "pages"                       : {
+	        "profile"                   : {
+	          "hide"                    : false
+	        },
+	        "leaderboard"               : {
+	          "hide"                    : false
+	        }
+	      }	      
+	    },
+	    "templates"                   : {}
   };
 
   window.onload = function () {

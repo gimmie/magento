@@ -121,6 +121,8 @@ class Gimmie_WidgetPage_Model_Observer
       $country['label'] = $country['name'];
     }
     
+    $countries = array_merge(array(array('value' => 'auto', 'label' => 'Auto Detect')), $countries);
+    
     return $countries;
   }
 }
