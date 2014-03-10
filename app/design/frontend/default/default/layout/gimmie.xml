@@ -1,18 +1,10 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
   <default>
-    <!-- <reference name="left">
-      <block type="core/template" name="gimmie_rewards"  as="gimmieRewards"  template="page/template/gimmie-rewards.phtml" />
-        </reference> -->
 
-    <!-- <reference name="right">
-      <block type="core/template" name="gimmie_rewards"  as="gimmieRewards"  template="page/template/gimmie-rewards.phtml" />
-        </reference>
-
-    -->
-
-    <reference name="left">
-      <block type="core/template" name="gimmie_js" as="gimmieJs" after="-" template="page/template/gimmie-rewards.phtml" />
+    <reference name="head">
+      <block type="core/template" name="gimmie_config" as="gimmie_config" template="gimmie.phtml"></block>
     </reference>
-  </default>   
-</layout> 
+
+  </default>
+</layout>

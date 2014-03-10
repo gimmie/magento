@@ -1,8 +1,8 @@
 <config>
   <tabs>
     <gimmie>
-      <label>Gimmie Loyalty Program Setup</label>
-      <sort_order>1234</sort_order>
+      <label>Gimmie Rewards</label>
+      <sort_order>1</sort_order>
     </gimmie>
   </tabs> 
 

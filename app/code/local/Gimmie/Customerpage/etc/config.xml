@@ -44,9 +44,10 @@
     </events>
 
   </global>
+  
   <frontend>
-
-    <blocks> <!--Block folder-->
+  
+    <blocks>
       <customerpage>
         <class>Gimmie_Customerpage_Block</class>
       </customerpage>
@@ -61,6 +62,7 @@
         </args>
       </customerpage>
     </routers>
+    
     <layout>
       <updates>
         <customerpage>
@@ -69,14 +71,15 @@
       </updates>
     </layout>
   </frontend>
+  
   <adminhtml>
-
 
     <acl>
       <resources>
         <all>
           <title>Allow Everything</title>
         </all>
+        
         <admin>
           <children>
             <Gimmie_Customerpage>
@@ -106,20 +109,15 @@
     </acl>
 
   </adminhtml>
+  
   <global>
-
-    <helpers>
-      <helpdata>
-        <class>Gimmie_Customerpage_Helper</class>
-      </helpdata>
-    </helpers>
-
-
+  
     <models>
       <Gimmie_Customerpage>
         <class>Gimmie_Customerpage_Model</class>
       </Gimmie_Customerpage>
     </models>
+    
   </global>
 
   <crontab>
