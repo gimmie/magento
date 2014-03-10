@@ -47,29 +47,15 @@
   
   <frontend>
   
-    <blocks>
-      <customerpage>
-        <class>Gimmie_Customerpage_Block</class>
-      </customerpage>
-    </blocks>
-
-    <routers>
-      <customerpage>
-        <use>standard</use>
-        <args>
-          <module>Gimmie_Customerpage</module>
-          <frontName>gimmie</frontName>
-        </args>
-      </customerpage>
-    </routers>
     
     <layout>
       <updates>
-        <customerpage>
+        <widget>
           <file>gimmie.xml</file>
-        </customerpage>
+        </widget>
       </updates>
     </layout>
+    
   </frontend>
   
   <adminhtml>
