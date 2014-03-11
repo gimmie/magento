@@ -3,7 +3,7 @@
   <modules>
     <Gimmie_WidgetPage>
       <active>true</active>
-      <codePool>local</codePool>
+      <codePool>community</codePool>
     </Gimmie_WidgetPage>
   </modules>
 </config> 
