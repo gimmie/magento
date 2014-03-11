@@ -2,7 +2,7 @@
   <tabs>
     <gimmie>
       <label>Gimmie Rewards</label>
-      <sort_order>1</sort_order>
+      <sort_order>5</sort_order>
     </gimmie>
   </tabs> 
 
@@ -11,7 +11,7 @@
       <label>Gimmie Rewards</label>
       <tab>gimmie</tab>
       <frontend_type>text</frontend_type>
-      <sort_order>1000</sort_order>
+      <sort_order>1</sort_order>
       <show_in_default>1</show_in_default>
       <show_in_website>1</show_in_website>
       <show_in_store>1</show_in_store>   
@@ -49,7 +49,7 @@
             <secret_key>
               <label>Secret Key</label>
               <comment>
-                <![CDATA[<a href="http://www.gimmieworld.com" target="_blank">Key and Secret can change by signup or login here</a>]]>
+                <![CDATA[<a href="http://www.gimmieworld.com/sign-up" target="_blank">Signup here to get your own key and secret.</a>]]>
               </comment>
               <frontend_type>text</frontend_type>
               <sort_order>3</sort_order>
@@ -118,6 +118,18 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </leaderboard_view>
+            
+            <notification_timeout>
+              <label>Notification Timeout</label>
+              <frontend_type>text</frontend_type>
+              <comment>
+                <![CDATA[This value is how long notification shows up when user has done something.]]>
+              </comment>
+              <sort_order>4</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </notification_timeout>
           </fields>
         </views>
         

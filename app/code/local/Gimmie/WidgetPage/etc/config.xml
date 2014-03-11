@@ -118,6 +118,7 @@
         <catalog_view>1</catalog_view>
         <profile_view>1</profile_view>
         <leaderboard_view>1</leaderboard_view>
+        <notification_timeout>10</notification_timeout>
       </views>
       <text_and_styles>
         <widget_text>

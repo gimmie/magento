@@ -9,9 +9,13 @@
   $name = htmlspecialchars($customer['firstname'].' '.$customer['lastname']);
   $email = $customer['email'];
 ?>
+<style>
+  <?php echo Mage::getStoreConfig('Gimmie/text_and_styles/widget_style'); ?>
+</style>
 <script type="text/javascript">
   window._gimmie = {
-	    "endpoint"                    : "http://demo.gimmieworld.com/magento/index.php/gimmie/index/proxy?target=",
+      
+	    "endpoint"                    : "<?php echo Mage::getUrl('gimmie/index/proxy'); ?>?target=",
 	    "key"                         : "<?php echo Mage::getStoreConfig('Gimmie/general/consumer_key'); ?>",
 	    "country"                     : "<?php echo $country; ?>",        
 	    "user"                        : {
@@ -25,18 +29,26 @@
 	    "options"                     : {
 	      "animate"                   : true,
 	      "auto_show_notification"    : true,
-	      "notification_timeout"      : 10,
+	      "notification_timeout"      : "<?php echo Mage::getStoreConfig('Gimmie/views/notification_timeout'); ?>",
 	      "responsive"                : true,
 	      "show_anonymous_rewards"    : true,
 	      "shuffle_reward"            : true,
 	      "pages"                       : {
+	        "catalog"                   : {
+	          "hide"                    : "<?php echo (Mage::getStoreConfig('Gimmie/views/catalog_view') == 0 ? 'true' : 'false'); ?>"
+	        },
 	        "profile"                   : {
-	          "hide"                    : false
+	          "hide"                    : "<?php echo (Mage::getStoreConfig('Gimmie/views/profile_view') == 0 ? 'true' : 'false'); ?>"
 	        },
 	        "leaderboard"               : {
-	          "hide"                    : false
+	          "hide"                    : "<?php echo (Mage::getStoreConfig('Gimmie/views/leaderboard_view') == 0 ? 'true' : 'false'); ?>"
 	        }
 	      }	      
+	    },
+	    "text"                        : {
+	      "help"                      : "<?php echo Mage::getStoreConfig('Gimmie/text_and_styles/widget_help'); ?>",
+	      "help_url"                  : "<?php echo Mage::getStoreConfig('Gimmie/text_and_styles/widget_help_url'); ?>",
+<?php echo Mage::getStoreConfig('Gimmie/text_and_styles/widget_text'); ?>
 	    },
 	    "templates"                   : {}
   };
