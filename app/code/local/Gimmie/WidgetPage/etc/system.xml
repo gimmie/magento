@@ -240,11 +240,14 @@
           <fields>
             <widget_text>
               <label>Widget Text</label>
+              <comment>
+                <![CDATA[Change text after `:` only]]>
+              </comment>
               <frontend_type>textarea</frontend_type>
               <sort_order>1</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </widget_text>
             
             <widget_help>
