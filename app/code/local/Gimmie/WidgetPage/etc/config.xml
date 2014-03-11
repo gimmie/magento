@@ -106,6 +106,78 @@
 
   </adminhtml>
   
+  <default>
+    
+    <Gimmie>
+      <general>
+        <consumer_key>e52853bfdcf1d49a0368181245b7</consumer_key>
+        <secret_key>3a95b4f7da128421ca7a15d67d3b</secret_key>
+        <country>auto</country>
+      </general>
+      <views>
+        <catalog_view>1</catalog_view>
+        <profile_view>1</profile_view>
+        <leaderboard_view>1</leaderboard_view>
+      </views>
+      <text_and_styles>
+        <widget_text>
+        <![CDATA[
+"empty_reward"              : "There are no rewards in the catalog right now. Please check back again while we add more rewards.",
+"loading_reward"            : "Loading Rewards",
+"error"                     : "Something wrong, please close and open again later.",
+"login_title_text"          : "Login/Sign up",
+"login_subline"             : "to redeem rewards",
+"login_headline"            : "<p>Please login or signup to</p><p>earn points and redeem rewards</p>",
+"login_button"              : "Login/Signup <img data-src='{{root}}navigation-arrow.png'>",
+"help_link"                 : "How do I earn points?",
+"reward_tab_title"          : "Reward",
+"reward_tab_profile"        : "Profile",
+"reward_tab_leaderboard"    : "Leaderboard",
+"points"                    : "points",
+"loading"                   : "Loading",
+"reached_highest_level"     : "Reached highest level",
+"points_to_level"           : "points to Level",
+"badges_title"              : "Badges",
+"mayorships_title"          : "Mayorships",
+"redemptions_title"         : "Redemptions",
+"activities_title"          : "Activities",
+"badge"                     : "Badge",
+"mystery_badge"             : "Mystery Badge",
+"expires"                   : "Expires",
+"redeemed"                  : "Redeemed",
+"expired"                   : "Expired",
+"loading_activities"        : "Loading Activities",
+"empty_activities"          : "<p>You don't have recent activities.</p><p>When you earn points, badges or rewards a log of activities is shown here.</p>",
+"fully_redeemed"            : "FULLY REDEEMED",
+"featured_reward"           : "FEATURED REWARD",
+"sponsor_here"              : "<p>Want to list your reward here?</p><small>Click for details.</small>",
+"back_to_catalog"           : "&laquo; All {{data.category_name}} Rewards",
+"redeem_button"             : "Redeem with {{data.points}} pts",
+"use_reward_now"            : "Use Reward Now",
+"description"               : "Description",
+"fineprint"                 : "Fine Print",
+"user_points"               : "You have <span class=\"gimmie-user-points\">{{user.points}}</span> pts",
+"see_all_redemptions"       : "See All Redemptions",
+"havent_redeemed"           : "<p>You haven't redeemed any rewards.</p><p>View your redemptions here after redeeming a reward from the catalog.</p>",
+"see_all_mayorships"        : "See All Mayorships",
+"empty_mayorships"          : "<p>You don't have any mayorships</p><p>Mayorships are given to the most active user at specific venues in a period of 30 days</p>",
+"see_all_badges"            : "See All Badges",
+"loading_badges"            : "Loading Badges",
+"empty_badges"              : "<p>You don't have any badges.</p><p>Badges are rewarded when you do centain actions.</p>",
+"see_all_activities"        : "See All Activities",
+"loading_recent_activities" : "Loading recent activities",
+"all_time_points"           : "all-time points:",
+"most_points"               : "Most Points",
+"most_rewards"              : "Most Rewards",
+"most_reward_value"         : "Most Reward Value",
+"loading_leaderboard"       : "Loading Leaderboard"
+        ]]>
+        </widget_text>
+      </text_and_styles>
+    </Gimmie>
+    
+  </default>
+  
   <global>
   
     <models>
