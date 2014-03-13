@@ -29,19 +29,19 @@
 	    "options"                     : {
 	      "animate"                   : true,
 	      "auto_show_notification"    : true,
-	      "notification_timeout"      : "<?php echo Mage::getStoreConfig('Gimmie/views/notification_timeout'); ?>",
+	      "notification_timeout"      : <?php echo Mage::getStoreConfig('Gimmie/views/notification_timeout'); ?>,
 	      "responsive"                : true,
 	      "show_anonymous_rewards"    : true,
 	      "shuffle_reward"            : true,
 	      "pages"                       : {
 	        "catalog"                   : {
-	          "hide"                    : "<?php echo (Mage::getStoreConfig('Gimmie/views/catalog_view') == 0 ? 'true' : 'false'); ?>"
+	          "hide"                    : <?php echo (Mage::getStoreConfig('Gimmie/views/catalog_view') == 0 ? 'true' : 'false'); ?>
 	        },
 	        "profile"                   : {
-	          "hide"                    : "<?php echo (Mage::getStoreConfig('Gimmie/views/profile_view') == 0 ? 'true' : 'false'); ?>"
+	          "hide"                    : <?php echo (Mage::getStoreConfig('Gimmie/views/profile_view') == 0 ? 'true' : 'false'); ?>
 	        },
 	        "leaderboard"               : {
-	          "hide"                    : "<?php echo (Mage::getStoreConfig('Gimmie/views/leaderboard_view') == 0 ? 'true' : 'false'); ?>"
+	          "hide"                    : <?php echo (Mage::getStoreConfig('Gimmie/views/leaderboard_view') == 0 ? 'true' : 'false'); ?>
 	        }
 	      }	      
 	    },
