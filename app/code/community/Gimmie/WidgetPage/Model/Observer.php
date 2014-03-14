@@ -46,7 +46,7 @@ class Gimmie_WidgetPage_Model_Observer
       $customerData = Mage::getModel('customer/customer')->load($id)->getData();
       $email = $customerData['email'];
 
-      $this->getGimmie($email)->trigger_with_name($event);
+      $this->getGimmie($email)->trigger($event);
     }
   }
 
@@ -64,7 +64,7 @@ class Gimmie_WidgetPage_Model_Observer
 
       $purchased_event = 'did_magento_user_purchased_item';
       if ($pointsConfig["gimmie_trigger_$purchased_event"]) {
-        $this->getGimmie($email)->trigger_with_name($purchased_event);
+        $this->getGimmie($email)->trigger($purchased_event);
       }
 
       $date = getdate(strtotime($order->getCustomerDob()));
@@ -73,7 +73,7 @@ class Gimmie_WidgetPage_Model_Observer
 
       $birthmonth_event = 'did_magento_user_born_this_month';
       if ($pointsConfig["gimmie_trigger_$birthmonth_event"] && ($birthMonth == $currentMonth)) {
-        $this->getGimmie($email)->trigger_with_name($birthmonth_event);
+        $this->getGimmie($email)->trigger($birthmonth_event);
       }
 
       $amountWithoutTax = $order->getGrandTotal() - $order->getShippingAmount();
@@ -110,7 +110,7 @@ class Gimmie_WidgetPage_Model_Observer
       $row = $cursor->fetch();
 
       $email = $row['customer_email'];
-      $this->getGimmie($email)->trigger_with_name($event);
+      $this->getGimmie($email)->trigger($event);
     }
 
   }
