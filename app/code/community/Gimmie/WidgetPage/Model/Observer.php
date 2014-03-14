@@ -16,7 +16,7 @@ class Gimmie_WidgetPage_Model_Observer
     $secret = $config['secret_key'];
 
     $gimmie = Gimmie::getInstance($key, $secret);
-    $gimmie->login($email);
+    $gimmie->set_user($email);
     return $gimmie;
   }
 
