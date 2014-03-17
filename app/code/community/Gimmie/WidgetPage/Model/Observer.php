@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 class Gimmie_WidgetPage_Model_Observer
 {
 
@@ -23,7 +22,7 @@ class Gimmie_WidgetPage_Model_Observer
 
   public function captureReferral(Varien_Event_Observer $observer)
   {
-    if (array_key_exists($_GET, 'id')) {
+    if (array_key_exists('id', $_GET)) {
       // here we will save the referrer affiliate ID
       Mage::getModel('core/cookie')->set(
         self::COOKIE_KEY_SOURCE,
@@ -91,8 +90,7 @@ class Gimmie_WidgetPage_Model_Observer
     }
   }
 
-  public function monthTopSpender(Varian_Event_Observer $observer) {
-
+  public function monthTopSpender($observer) {
     $event = 'did_magento_user_spent_the_most';
     $generalConfig = $this->getConfig('general');
     $pointsConfig = $this->getConfig('points');
