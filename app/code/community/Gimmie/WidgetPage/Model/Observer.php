@@ -11,7 +11,7 @@ class Gimmie_WidgetPage_Model_Observer
   }
 
   private function getGimmie($email) {
-    require_once(Mage::getBaseDir('lib').'/Gimmie/gimmie.php');
+    require_once(Mage::getBaseDir('lib').'/Gimmie/Gimmie.sdk.php');
     $config = $this->getConfig('general');
     $key = $config['consumer_key'];
     $secret = $config['secret_key'];

@@ -2,7 +2,7 @@
 class Gimmie_WidgetPage_IndexController extends Mage_Core_Controller_Front_Action {
   
   public function proxyAction() {
-    require_once(Mage::getBaseDir('lib').'/Gimmie/gimmie.php');
+    require_once(Mage::getBaseDir('lib').'/Gimmie/Gimmie.sdk.php');
     
     $session = Mage::getSingleton('customer/session');
     if ($session->isLoggedIn()) {
