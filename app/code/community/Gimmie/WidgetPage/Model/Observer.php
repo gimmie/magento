@@ -69,7 +69,7 @@ class Gimmie_WidgetPage_Model_Observer
       $birthMonth = $date['mon'];
       $currentMonth = date('n');
 
-      $birthmonth_event = 'did_magento_user_born_this_month';
+      $birthmonth_event = 'did_magento_user_purchased_on_birthday_month';
       if ($pointsConfig["gimmie_trigger_$birthmonth_event"] && ($birthMonth == $currentMonth)) {
         $this->getGimmie($email)->trigger($birthmonth_event);
       }
