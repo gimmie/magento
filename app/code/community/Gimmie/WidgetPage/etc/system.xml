@@ -145,31 +145,6 @@
           <show_in_store>1</show_in_store>  
           
           <fields>
-            <purchase_exchange_dollar>
-              <label>Purchase Amount</label>
-              <comment>
-                <![CDATA[Purchase amount that will convert to below points]]>
-              </comment>
-              <frontend_type>text</frontend_type>
-              <sort_order>12</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
-            </purchase_exchange_dollar>
-
-            <purchase_exchange_points>
-              <label>Giving out points when purchase</label>
-              <comment>
-                <![CDATA[Number of points that gives out when user purchases above amount]]>
-              </comment>              
-              <frontend_type>text</frontend_type>
-              <sort_order>13</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                            
-            </purchase_exchange_points>
-
-
             <gimmie_trigger_did_magento_user_spent_the_most>
               <label>Top spender event</label>
               <comment>

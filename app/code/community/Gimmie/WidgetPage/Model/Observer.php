@@ -74,19 +74,6 @@ class Gimmie_WidgetPage_Model_Observer
         $this->getGimmie($email)->trigger($birthmonth_event);
       }
 
-      $amountWithoutTax = $order->getGrandTotal() - $order->getShippingAmount();
-
-      $dollarExchanges = is_numeric($pointsConfig['purchase_exchange_dollar']) ? intval($pointsConfig['purchase_exchange_dollar']) : -1;
-      $pointsExchanges = is_numeric($pointsConfig['purchase_exchange_points']) ? intval($pointsConfig['purchase_exchange_points']) : -1;
-
-      if (is_numeric($amountWithoutTax) && $amountWithoutTax > 0 && $dollarExchanges > 0 && $pointsExchanges > 0) {
-        $totalPoints = floor($amountWithoutTax / $dollarExchanges) * $pointsExchanges;
-        error_log("Award $totalPoints for spending $amountWithoutTax");
-        if ($totalPoints > 0) {
-          $this->getGimmie($email)->change_points($totalPoints, "Award $totalPoints for spending $amountWithoutTax");
-        }
-      }
-
     }
   }
 
