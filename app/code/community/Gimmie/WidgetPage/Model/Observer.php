@@ -26,7 +26,7 @@ class Gimmie_WidgetPage_Model_Observer
       // here we will save the referrer affiliate ID
       Mage::getModel('core/cookie')->set(
         self::COOKIE_KEY_SOURCE,
-        $utmSource,
+        $_GET['id'],
         30 * 86400);
     }
   }
@@ -54,10 +54,19 @@ class Gimmie_WidgetPage_Model_Observer
     $generalConfig = $this->getConfig('general');
     $pointsConfig = $this->getConfig('points');
     
-    if ($order->getState() == Mage_Sales_Model_Order::STATE_COMPLETE && $generalConfig['gimmie_enable']) {
+    function entity_name($item) {
+      return $item->getData('entity_name');
+    }
+    function shipment_only($item) {
+      return $item == 'shipment';
+    }
+    $actions = array_map("entity_name", $order->getAllStatusHistory());    
+    
+    $lastAction = end($actions);
+    $shipments = array_filter($actions, "shipment_only");    
+    $shouldTriggerGimmie = ($lastAction == 'shipment' && count($shipments) == 1);
 
-      $order_id = $event->getOrder()->getId();
-      $order = Mage::getModel('sales/order')->load($order_id);
+    if ($order->hasShipments() && $shouldTriggerGimmie && $generalConfig['gimmie_enable']) {
       $email = $order->getCustomerEmail();
 
       $purchased_event = 'did_magento_user_purchased_item';
@@ -89,7 +98,7 @@ class Gimmie_WidgetPage_Model_Observer
 
     }
   }
-
+  
   public function monthTopSpender($observer) {
     $event = 'did_magento_user_spent_the_most';
     $generalConfig = $this->getConfig('general');

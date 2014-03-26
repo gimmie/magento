@@ -2,7 +2,7 @@
 <config>
   <modules>
     <Gimmie_WidgetPage>
-      <version>1.0.0</version>
+      <version>1.0.8</version>
     </Gimmie_WidgetPage>
   </modules>
   
@@ -18,9 +18,7 @@
           </Gimmie_WidgetPage>
         </observers>
       </controller_front_init_before>
-    </events>
-
-    <events>
+      
       <customer_register_success>
         <observers>
           <Gimmie_WidgetPage>
@@ -30,9 +28,7 @@
           </Gimmie_WidgetPage>        
         </observers>
       </customer_register_success>
-    </events>
-
-    <events>
+      
       <sales_order_save_commit_after>
         <observers>
           <Gimmie_WidgetPage>
