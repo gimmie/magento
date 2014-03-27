@@ -3,8 +3,14 @@
   <default>
 
     <reference name="head">
-      <block type="core/template" name="gimmie_config" as="gimmie_config" template="gimmie.phtml"></block>
+      <block type="core/template" name="gimmie_config" template="gimmie.phtml"></block>
     </reference>
 
   </default>
+  
+  <customer_account_index>
+    <reference name="customer_account_dashboard">
+      <block type="core/template" name="gimmie_dashboard_top" as="customer.account.dashboard.extra" template="dashboard.phtml" />
+    </reference>
+  </customer_account_index>
 </layout>

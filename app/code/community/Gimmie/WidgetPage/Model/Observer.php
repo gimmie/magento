@@ -22,11 +22,11 @@ class Gimmie_WidgetPage_Model_Observer
 
   public function captureReferral(Varien_Event_Observer $observer)
   {
-    if (array_key_exists('id', $_GET)) {
+    if (array_key_exists('gmref', $_GET)) {
       // here we will save the referrer affiliate ID
       Mage::getModel('core/cookie')->set(
         self::COOKIE_KEY_SOURCE,
-        $_GET['id'],
+        $_GET['gmref'],
         30 * 86400);
     }
   }
