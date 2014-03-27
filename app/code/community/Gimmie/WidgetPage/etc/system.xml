@@ -177,7 +177,7 @@
               <show_in_store>1</show_in_store>                    
             </gimmie_trigger_did_magento_user_purchased_item>
 
-            <gimmie_trigger_did_magento_user_born_this_month>
+            <gimmie_trigger_did_magento_user_purchased_on_birthday_month>
               <label>Birthday month event</label>
               <comment>
                 <![CDATA[Give out rewards when user purchases in their birthday month]]>
@@ -188,7 +188,7 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>                    
-            </gimmie_trigger_did_magento_user_born_this_month>
+            </gimmie_trigger_did_magento_user_purchased_on_birthday_month>
           </fields>
         
         </points>

@@ -1,0 +1,26 @@
+<?php
+  $customer = Mage::getSingleton('customer/session')->getCustomer();
+  $link = Mage::getBaseUrl().'?gmref='.$customer->getId();
+?>
+<div class="box gimmie-dashboard">
+  <div class="box-title">
+    <h3><?php echo $this->__('Referral Link'); ?></h3>
+  </div>
+  <div class="box-content">
+    <p>
+      <?php echo $this->__('Share this link to your friend for getting points'); ?>    
+    </p>
+    <p class="content-link">
+      <a href="<?php echo $link; ?>" target="_blank"><?php echo $link; ?></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urldecode($link); ?>" target="_blank">
+        <img src="<?php echo $this->getSkinUrl('images/gm-facebook.png');?>"/>
+      </a>
+      <a href="http://twitter.com/home?status=<?php echo urlencode($link); ?>" target="_blank">
+        <img src="<?php echo $this->getSkinUrl('images/gm-twitter.png');?>"/>
+      </a>
+      <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($link); ?>" target="_blank">
+        <img src="<?php echo $this->getSkinUrl('images/gm-linkedin.png');?>"/>
+      </a>
+    </p>
+  </div>
+</div>
