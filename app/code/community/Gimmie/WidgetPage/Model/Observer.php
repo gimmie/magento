@@ -37,9 +37,7 @@ class Gimmie_WidgetPage_Model_Observer
     $pointsConfig = $this->getConfig('points');
 
     if ($generalConfig['gimmie_enable'] && $pointsConfig['gimmie_trigger_'.$event]) {
-      $id= Mage::getModel('core/cookie')->get(
-        Gimmie_Customerpage_Model_Observer::COOKIE_KEY_SOURCE
-      );
+      $id= Mage::getModel('core/cookie')->get('gmref');
 
       $customerData = Mage::getModel('customer/customer')->load($id)->getData();
       $email = $customerData['email'];
