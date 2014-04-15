@@ -4,7 +4,7 @@
     $ip = Mage::helper('core/http')->getRemoteAddr();
     $country = trim(file_get_contents('http://api.wipmania.com/'.$ip));
   }
-  
+
   $session = Mage::getSingleton('customer/session');
   if ($session->isLoggedIn()) {
     $customer = $session->getCustomer()->getData();
@@ -52,9 +52,9 @@
 	      "show_anonymous_rewards"    : true,
 	      "shuffle_reward"            : true,
 	      "pages"                       : {
-	        "catalog"                   : {
+          "catalog"                   : {
+            "hide_sponsor_here"       : <?php echo (Mage::getStoreConfig('Gimmie/views/hide_sponsor_here') == 0 ? 'false' : 'true'); ?>,
 	          "hide"                    : <?php echo (Mage::getStoreConfig('Gimmie/views/catalog_view') == 0 ? 'true' : 'false'); ?>
-	          
 	        },
 	        "profile"                   : {
 	          "hide"                    : <?php echo (Mage::getStoreConfig('Gimmie/views/profile_view') == 0 ? 'true' : 'false'); ?>
