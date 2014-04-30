@@ -18,18 +18,28 @@
           </Gimmie_WidgetPage>
         </observers>
       </controller_front_init_before>
-      
-      <customer_register_success>
+
+      <customer_save_before>
+        <observers>
+          <Gimmie_WidgetPage>
+            <class>Gimmie_WidgetPage_Model_observer</class>
+            <method>flagNewCustomer</method>
+            <type>singleton</type>
+          </Gimmie_WidgetPage>
+        </observers>
+      </customer_save_before>
+
+      <customer_save_after>
         <observers>
           <Gimmie_WidgetPage>
             <class>Gimmie_WidgetPage_Model_observer</class>
             <method>triggerReferral</method>
             <type>singleton</type>
-          </Gimmie_WidgetPage>        
+          </Gimmie_WidgetPage>
         </observers>
-      </customer_register_success>
-      
-      <sales_order_save_commit_after>
+      </customer_save_after>
+
+      <sales_order_save_after>
         <observers>
           <Gimmie_WidgetPage>
             <type>model</type>
@@ -37,7 +47,7 @@
             <method>giveoutPointsAndTriggerPurchased</method>
           </Gimmie_WidgetPage>
         </observers>
-      </sales_order_save_commit_after>
+      </sales_order_save_after>
     </events>
 
   </global>

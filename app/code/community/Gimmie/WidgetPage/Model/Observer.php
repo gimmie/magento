@@ -40,19 +40,35 @@ class Gimmie_WidgetPage_Model_Observer
     }
   }
 
-  public function triggerReferral($event) {
-    $event = 'did_magento_user_referral_other_user';
-    $generalConfig = $this->getConfig('general');
-    $pointsConfig = $this->getConfig('points');
-
-    if ($generalConfig['gimmie_enable'] && $pointsConfig['gimmie_trigger_'.$event]) {
-      $id = Mage::getModel('core/cookie')->get(self::COOKIE_KEY_SOURCE);
-
-      $customerData = Mage::getModel('customer/customer')->load($id)->getData();
-      $email = $customerData['email'];
-
-      $this->getGimmie($email)->trigger($event);
+  public function flagNewCustomer($event) {
+    $object = $event->getEvent()->getDataObject();
+    if ($object->isObjectNew()) {
+      $object->newCustomer = true;
     }
+  }
+
+  public function triggerReferral($event) {
+    $id = Mage::getModel('core/cookie')->get(self::COOKIE_KEY_SOURCE);
+    $object = $event->getEvent()->getDataObject();
+
+    $triggered = $object->triggered;
+    $newCustomer = $object->newCustomer;
+    if (!isset($triggered) && isset($newCustomer) && isset($id)) {
+      $object->triggered = true;
+
+      $event = 'did_magento_user_referral_other_user';
+      $generalConfig = $this->getConfig('general');
+      $pointsConfig = $this->getConfig('points');
+
+      if ($generalConfig['gimmie_enable'] && $pointsConfig['gimmie_trigger_'.$event]) {
+
+        $customerData = Mage::getModel('customer/customer')->load($id)->getData();
+        $email = $customerData['email'];
+
+        $this->getGimmie($email)->trigger($event);
+      }
+    }
+
   }
 
   public function giveoutPointsAndTriggerPurchased($event)
