@@ -53,7 +53,7 @@ class Gimmie_WidgetPage_Model_Observer
 
     $triggered = $object->triggered;
     $newCustomer = $object->newCustomer;
-    if (!isset($triggered) && isset($newCustomer) && isset($id)) {
+    if (!isset($triggered) && isset($newCustomer) && !empty($id)) {
       $object->triggered = true;
 
       $event = 'did_magento_user_referral_other_user';
