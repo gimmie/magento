@@ -1,3 +1,0 @@
-[submodule "lib/Gimmie"]
-	path = lib/Gimmie
-	url = git@github.com:gimmie/php.git
