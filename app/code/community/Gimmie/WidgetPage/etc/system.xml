@@ -4,7 +4,7 @@
       <label>Gimmie Rewards</label>
       <sort_order>5</sort_order>
     </gimmie>
-  </tabs> 
+  </tabs>
 
   <sections>
     <Gimmie translate="label">
@@ -14,18 +14,18 @@
       <sort_order>1</sort_order>
       <show_in_default>1</show_in_default>
       <show_in_website>1</show_in_website>
-      <show_in_store>1</show_in_store>   
+      <show_in_store>1</show_in_store>
 
       <groups>
         <general translate="label">
           <label>General Gimmie Settings</label>
           <frontend_type>text</frontend_type>
           <sort_order>1</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
-          <show_in_store>1</show_in_store>  
-          
+          <show_in_store>1</show_in_store>
+
           <fields>
             <gimmie_enable>
               <label>Enable Gimmie</label>
@@ -34,7 +34,7 @@
               <sort_order>1</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </gimmie_enable>
 
             <consumer_key>
@@ -43,7 +43,7 @@
               <sort_order>2</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </consumer_key>
 
             <secret_key>
@@ -55,7 +55,7 @@
               <sort_order>3</sort_order>
               <show_in_default>2</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </secret_key>
 
             <country>
@@ -65,31 +65,31 @@
               <sort_order>4</sort_order>
               <show_in_default>2</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>  
+              <show_in_store>1</show_in_store>
             </country>
-            
+
             <locale>
               <label>Locale</label>
               <frontend_type>text</frontend_type>
               <sort_order>5</sort_order>
               <show_in_default>2</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>  
+              <show_in_store>1</show_in_store>
             </locale>
-            
+
           </fields>
-          
+
         </general>
-        
+
         <views translate="label">
           <label>Gimmie Popup Views</label>
           <frontend_type>text</frontend_type>
           <sort_order>2</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
           <show_in_store>1</show_in_store>
-          
+
           <fields>
             <catalog_view>
               <label>Catalog View</label>
@@ -118,7 +118,7 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </leaderboard_view>
-            
+
             <notification_timeout>
               <label>Notification Timeout</label>
               <frontend_type>text</frontend_type>
@@ -142,18 +142,18 @@
             </hide_sponsor_here>
           </fields>
         </views>
-        
+
         <points translate="label">
-        
+
           <label>Points and Event Triggers</label>
-          
+
           <frontend_type>text</frontend_type>
           <sort_order>3</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
-          <show_in_store>1</show_in_store>  
-          
+          <show_in_store>1</show_in_store>
+
           <fields>
             <purchase_exchange_dollar>
               <label>Purchase Amount</label>
@@ -164,19 +164,19 @@
               <sort_order>12</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </purchase_exchange_dollar>
 
             <purchase_exchange_points>
               <label>Giving out points when purchase</label>
               <comment>
                 <![CDATA[Number of points that gives out when user purchases above amount]]>
-              </comment>              
+              </comment>
               <frontend_type>text</frontend_type>
               <sort_order>13</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                            
+              <show_in_store>1</show_in_store>
             </purchase_exchange_points>
 
 
@@ -190,7 +190,7 @@
               <sort_order>18</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </gimmie_trigger_did_magento_user_spent_the_most>
 
 
@@ -204,7 +204,7 @@
               <sort_order>19</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </gimmie_trigger_did_magento_user_referral_other_user>
 
 
@@ -218,7 +218,7 @@
               <sort_order>20</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </gimmie_trigger_did_magento_user_purchased_item>
 
             <gimmie_trigger_did_magento_user_purchased_on_birthday_month>
@@ -231,22 +231,22 @@
               <sort_order>21</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </gimmie_trigger_did_magento_user_purchased_on_birthday_month>
           </fields>
-        
+
         </points>
-        
+
         <text_and_styles translate="label">
           <label>Widget Text and Style</label>
-          
+
           <frontend_type>text</frontend_type>
           <sort_order>4</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
-          <show_in_store>1</show_in_store>  
-          
+          <show_in_store>1</show_in_store>
+
           <fields>
             <widget_text>
               <label>Widget Text</label>
@@ -259,38 +259,47 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </widget_text>
-            
+
             <widget_help>
               <label>Widget Help Information</label>
               <frontend_type>textarea</frontend_type>
               <sort_order>2</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </widget_help>
-            
+
             <widget_help_url>
               <label>Widget Help URL</label>
               <frontend_type>text</frontend_type>
               <sort_order>3</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </widget_help_url>
-            
+
             <widget_style>
               <label>Widget Stylesheets</label>
               <frontend_type>textarea</frontend_type>
               <sort_order>4</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </widget_style>
+
+            <widget_terms_and_conditions>
+              <label>Widget Terms and Conditions</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>5</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </widget_terms_and_conditions>
           </fields>
         </text_and_styles>
-      
-      </groups>                 
-      
+
+      </groups>
+
     </Gimmie>
-  </sections>     
+  </sections>
 </config>
