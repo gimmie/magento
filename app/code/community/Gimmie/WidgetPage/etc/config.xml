@@ -5,9 +5,9 @@
       <version>1.0.8</version>
     </Gimmie_WidgetPage>
   </modules>
-  
+
   <global>
-  
+
     <events>
       <controller_front_init_before>
         <observers>
@@ -51,9 +51,9 @@
     </events>
 
   </global>
-  
+
   <frontend>
-  
+
     <routers>
       <widgetpage>
         <use>standard</use>
@@ -63,7 +63,7 @@
         </args>
       </widgetpage>
     </routers>
-    
+
     <layout>
       <updates>
         <widget>
@@ -71,9 +71,9 @@
         </widget>
       </updates>
     </layout>
-    
+
   </frontend>
-  
+
   <adminhtml>
 
     <acl>
@@ -81,7 +81,7 @@
         <all>
           <title>Allow Everything</title>
         </all>
-        
+
         <admin>
           <children>
             <Gimmie_WidgetPage>
@@ -111,9 +111,9 @@
     </acl>
 
   </adminhtml>
-  
+
   <default>
-    
+
     <Gimmie>
       <general>
         <consumer_key>e52853bfdcf1d49a0368181245b7</consumer_key>
@@ -182,27 +182,27 @@
         </widget_text>
       </text_and_styles>
     </Gimmie>
-    
+
   </default>
-  
+
   <global>
-  
+
     <models>
       <Gimmie_WidgetPage>
         <class>Gimmie_WidgetPage_Model</class>
       </Gimmie_WidgetPage>
     </models>
-    
+
   </global>
 
   <crontab>
     <jobs>
       <Gimmie_WidgetPage>
-        <schedule> <cron_expr>00 00 1 * *</cron_expr></schedule>
+        <schedule> <cron_expr>0 0 1 * *</cron_expr></schedule>
         <run><model>Gimmie_WidgetPage/observer::monthTopSpender</model></run>
       </Gimmie_WidgetPage>
 
     </jobs>
   </crontab>
 
-</config> 
+</config>
