@@ -28,7 +28,7 @@
 <script type="text/javascript">
   window._gimmie = {
 
-	    "endpoint"                    : "<?php echo Mage::getUrl('gimmie/index/proxy'); ?>?target=",
+	    "endpoint"                    : "<?php echo Mage::getUrl('gimmie/index/proxy', array('_secure'=>true)); ?>?target=",
 	    "key"                         : "<?php echo Mage::getStoreConfig('Gimmie/general/consumer_key'); ?>",
 	    "country"                     : "<?php echo $country; ?>",
 	    <?php if ($session->isLoggedIn()) { ?>
