@@ -32,7 +32,7 @@ class Gimmie_WidgetPage_Model_Observer
   }
 
   public function triggerReferral($event) {
-    $event = 'did_magento_user_referral_other_user';
+    $event = 'refer_a_friend';
     $generalConfig = $this->getConfig('general');
     $pointsConfig = $this->getConfig('points');
 
@@ -51,14 +51,14 @@ class Gimmie_WidgetPage_Model_Observer
     $order = $event->getOrder();
     $generalConfig = $this->getConfig('general');
     $pointsConfig = $this->getConfig('points');
-    
+
     if ($order->getState() == Mage_Sales_Model_Order::STATE_COMPLETE && $generalConfig['gimmie_enable']) {
 
       $order_id = $event->getOrder()->getId();
       $order = Mage::getModel('sales/order')->load($order_id);
       $email = $order->getCustomerEmail();
 
-      $purchased_event = 'did_magento_user_purchased_item';
+      $purchased_event = 'purchase_item';
       if ($pointsConfig["gimmie_trigger_$purchased_event"]) {
         $this->getGimmie($email)->trigger($purchased_event);
       }
@@ -67,7 +67,7 @@ class Gimmie_WidgetPage_Model_Observer
       $birthMonth = $date['mon'];
       $currentMonth = date('n');
 
-      $birthmonth_event = 'did_magento_user_purchased_on_birthday_month';
+      $birthmonth_event = 'purchase_item_in_birthday_month';
       if ($pointsConfig["gimmie_trigger_$birthmonth_event"] && ($birthMonth == $currentMonth)) {
         $this->getGimmie($email)->trigger($birthmonth_event);
       }
@@ -76,10 +76,10 @@ class Gimmie_WidgetPage_Model_Observer
   }
 
   public function monthTopSpender($observer) {
-    $event = 'did_magento_user_spent_the_most';
+    $event = 'top_spender_of_the_month';
     $generalConfig = $this->getConfig('general');
     $pointsConfig = $this->getConfig('points');
-    
+
     if ($generalConfig['gimmie_enable'] && $pointsConfig["gimmie_trigger_$event"]) {
 
       $date = getdate(strtotime('-1 months'));
@@ -98,5 +98,5 @@ class Gimmie_WidgetPage_Model_Observer
     }
 
   }
-  
+
 }
