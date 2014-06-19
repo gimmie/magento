@@ -31,19 +31,32 @@ class Gimmie_WidgetPage_Model_Observer
     }
   }
 
-  public function triggerReferral($event) {
-    $event = 'magento_refer_a_friend';
+  public function registerSuccess($observer) {
     $generalConfig = $this->getConfig('general');
     $pointsConfig = $this->getConfig('points');
 
-    if ($generalConfig['gimmie_enable'] && $pointsConfig['gimmie_trigger_'.$event]) {
-      $id= Mage::getModel('core/cookie')->get(self::COOKIE_KEY_SOURCE);
+    if ($generalConfig['gimmie_enable']) {
 
-      $customerData = Mage::getModel('customer/customer')->load($id)->getData();
-      $email = $customerData['email'];
+      $event = 'magento_refer_a_friend';
+      if ($pointsConfig['gimmie_trigger_'.$event]) {
+        $id = Mage::getModel('core/cookie')->get(self::COOKIE_KEY_SOURCE);
 
-      $this->getGimmie($email)->trigger($event);
+        $customerData = Mage::getModel('customer/customer')->load($id)->getData();
+        $email = $customerData['email'];
+
+        $this->getGimmie($email)->trigger($event);
+      }
+
+      $event = 'magento_register_user';
+      if ($pointsConfig['gimmie_trigger_'.$event]) {
+        $customer = $observer->getCustomer()->getData();
+        $email = $customer['email'];
+
+        $this->getGimmie($email)->trigger($event);
+      }
+
     }
+
   }
 
   public function giveoutPointsAndTriggerPurchased($event)

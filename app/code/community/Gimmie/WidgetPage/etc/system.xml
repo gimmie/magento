@@ -4,7 +4,7 @@
       <label>Gimmie Rewards</label>
       <sort_order>5</sort_order>
     </gimmie>
-  </tabs> 
+  </tabs>
 
   <sections>
     <Gimmie translate="label">
@@ -14,18 +14,18 @@
       <sort_order>1</sort_order>
       <show_in_default>1</show_in_default>
       <show_in_website>1</show_in_website>
-      <show_in_store>1</show_in_store>   
+      <show_in_store>1</show_in_store>
 
       <groups>
         <general translate="label">
           <label>General Gimmie Settings</label>
           <frontend_type>text</frontend_type>
           <sort_order>1</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
-          <show_in_store>1</show_in_store>  
-          
+          <show_in_store>1</show_in_store>
+
           <fields>
             <gimmie_enable>
               <label>Enable Gimmie</label>
@@ -34,7 +34,7 @@
               <sort_order>1</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </gimmie_enable>
 
             <consumer_key>
@@ -43,7 +43,7 @@
               <sort_order>2</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </consumer_key>
 
             <secret_key>
@@ -55,7 +55,7 @@
               <sort_order>3</sort_order>
               <show_in_default>2</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
+              <show_in_store>1</show_in_store>
             </secret_key>
 
             <country>
@@ -65,31 +65,31 @@
               <sort_order>4</sort_order>
               <show_in_default>2</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>  
+              <show_in_store>1</show_in_store>
             </country>
-            
+
             <locale>
               <label>Locale</label>
               <frontend_type>text</frontend_type>
               <sort_order>5</sort_order>
               <show_in_default>2</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>  
+              <show_in_store>1</show_in_store>
             </locale>
-            
+
           </fields>
-          
+
         </general>
-        
+
         <views translate="label">
           <label>Gimmie Popup Views</label>
           <frontend_type>text</frontend_type>
           <sort_order>2</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
           <show_in_store>1</show_in_store>
-          
+
           <fields>
             <profile_view>
               <label>Profile View</label>
@@ -109,7 +109,7 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </leaderboard_view>
-            
+
             <notification_timeout>
               <label>Notification Timeout</label>
               <frontend_type>text</frontend_type>
@@ -134,20 +134,20 @@
 
           </fields>
         </views>
-        
+
         <points translate="label">
-        
+
           <label>Points and Event Triggers</label>
-          
+
           <frontend_type>text</frontend_type>
           <sort_order>3</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
-          <show_in_store>1</show_in_store>  
-          
+          <show_in_store>1</show_in_store>
+
           <fields>
-            <gimmie_trigger_did_magento_user_spent_the_most>
+            <gimmie_trigger_magento_top_spender_of_the_month>
               <label>Top spender event</label>
               <comment>
                 <![CDATA[Every month, give out rewards(points/instant reward) to top spender]]>
@@ -157,63 +157,75 @@
               <sort_order>18</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </gimmie_trigger_did_magento_user_spent_the_most>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_magento_top_spender_of_the_month>
 
-
-            <gimmie_trigger_did_magento_user_referral_other_user>
-              <label>Referral event</label>
+            <gimmie_trigger_magento_register_user>
+              <label>User registers event</label>
               <comment>
-                <![CDATA[Give out rewards when user invites friends]]>
+                <![CDATA[Give out points when user register]]>
               </comment>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
               <sort_order>19</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </gimmie_trigger_did_magento_user_referral_other_user>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_magento_register_user>
 
-
-            <gimmie_trigger_did_magento_user_purchased_item>
-              <label>Purchases event</label>
+            <gimmie_trigger_magento_refer_a_friend>
+              <label>Referral event</label>
               <comment>
-                <![CDATA[Give out rewards when user purchases item]]>
+                <![CDATA[Give out rewards when user invites friends]]>
               </comment>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
               <sort_order>20</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </gimmie_trigger_did_magento_user_purchased_item>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_magento_refer_a_friend>
 
-            <gimmie_trigger_did_magento_user_purchased_on_birthday_month>
-              <label>Birthday month event</label>
+
+            <gimmie_trigger_magento_purchase_item>
+              <label>Purchases event</label>
               <comment>
-                <![CDATA[Give out rewards when user purchases in their birthday month]]>
+                <![CDATA[Give out rewards when user purchases item]]>
               </comment>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
               <sort_order>21</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                    
-            </gimmie_trigger_did_magento_user_purchased_on_birthday_month>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_magento_purchase_item>
+
+            <gimmie_trigger_magento_purchase_item_in_birthday_month>
+              <label>Birthday month event</label>
+              <comment>
+                <![CDATA[Give out rewards when user purchases in their birthday month]]>
+              </comment>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>22</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_magento_purchase_item_in_birthday_month>
           </fields>
-        
+
         </points>
-        
+
         <text_and_styles translate="label">
           <label>Widget Text and Style</label>
-          
+
           <frontend_type>text</frontend_type>
           <sort_order>4</sort_order>
-          
+
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
-          <show_in_store>1</show_in_store>  
-          
+          <show_in_store>1</show_in_store>
+
           <fields>
             <widget_text>
               <label>Widget Text</label>
@@ -226,38 +238,38 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </widget_text>
-            
+
             <widget_help>
               <label>Widget Help Information</label>
               <frontend_type>textarea</frontend_type>
               <sort_order>2</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </widget_help>
-            
+
             <widget_help_url>
               <label>Widget Help URL</label>
               <frontend_type>text</frontend_type>
               <sort_order>3</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </widget_help_url>
-            
+
             <widget_style>
               <label>Widget Stylesheets</label>
               <frontend_type>textarea</frontend_type>
               <sort_order>4</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>                
+              <show_in_store>1</show_in_store>
             </widget_style>
           </fields>
         </text_and_styles>
-      
-      </groups>                 
-      
+
+      </groups>
+
     </Gimmie>
-  </sections>     
+  </sections>
 </config>

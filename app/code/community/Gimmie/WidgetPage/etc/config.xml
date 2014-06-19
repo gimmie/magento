@@ -5,9 +5,9 @@
       <version>1.0.8</version>
     </Gimmie_WidgetPage>
   </modules>
-  
+
   <global>
-  
+
     <events>
       <controller_front_init_before>
         <observers>
@@ -23,9 +23,9 @@
         <observers>
           <Gimmie_WidgetPage>
             <class>Gimmie_WidgetPage_Model_observer</class>
-            <method>triggerReferral</method>
+            <method>registerSuccess</method>
             <type>singleton</type>
-          </Gimmie_WidgetPage>        
+          </Gimmie_WidgetPage>
         </observers>
       </customer_register_success>
 
@@ -41,9 +41,9 @@
     </events>
 
   </global>
-  
+
   <frontend>
-  
+
     <routers>
       <widgetpage>
         <use>standard</use>
@@ -53,7 +53,7 @@
         </args>
       </widgetpage>
     </routers>
-    
+
     <layout>
       <updates>
         <widget>
@@ -61,9 +61,9 @@
         </widget>
       </updates>
     </layout>
-    
+
   </frontend>
-  
+
   <adminhtml>
 
     <acl>
@@ -71,7 +71,7 @@
         <all>
           <title>Allow Everything</title>
         </all>
-        
+
         <admin>
           <children>
             <Gimmie_WidgetPage>
@@ -101,9 +101,9 @@
     </acl>
 
   </adminhtml>
-  
+
   <default>
-    
+
     <Gimmie>
       <general>
         <consumer_key>e52853bfdcf1d49a0368181245b7</consumer_key>
@@ -172,17 +172,17 @@
         </widget_text>
       </text_and_styles>
     </Gimmie>
-    
+
   </default>
-  
+
   <global>
-  
+
     <models>
       <Gimmie_WidgetPage>
         <class>Gimmie_WidgetPage_Model</class>
       </Gimmie_WidgetPage>
     </models>
-    
+
   </global>
 
   <crontab>
@@ -195,4 +195,4 @@
     </jobs>
   </crontab>
 
-</config> 
+</config>
