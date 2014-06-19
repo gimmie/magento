@@ -33,7 +33,7 @@
         <observers>
           <Gimmie_WidgetPage>
             <class>Gimmie_WidgetPage_Model_observer</class>
-            <method>triggerReferral</method>
+            <method>registerSuccess</method>
             <type>singleton</type>
           </Gimmie_WidgetPage>
         </observers>

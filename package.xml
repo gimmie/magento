@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
     <name>gimmie</name>
-    <version>1.0.10</version>
-    <stability>beta</stability>
+    <version>1.0.19</version>
+    <stability>stable</stability>
     <license>MITL</license>
     <channel>community</channel>
     <extends/>
