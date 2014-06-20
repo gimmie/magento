@@ -40,27 +40,26 @@ class Gimmie_WidgetPage_Model_Observer
     }
   }
 
-  public function flagNewCustomer($event) {
-    $object = $event->getEvent()->getDataObject();
+  public function flagNewCustomer($observer) {
+    $object = $observer->getEvent()->getDataObject();
     if ($object->isObjectNew()) {
       $object->newCustomer = true;
     }
   }
 
-  public function registerSuccess($observer) {
-    $id = Mage::getModel('core/cookie')->get(self::COOKIE_KEY_SOURCE);
-    $object = $event->getEvent()->getDataObject();
-
-    $triggered = $object->triggered;
-    $newCustomer = $object->newCustomer;
-    if (!isset($triggered) && isset($newCustomer) && !empty($id)) {
-      $object->triggered = true;
-
-      $generalConfig = $this->getConfig('general');
+  public function triggerReferral($observer) {
+    $generalConfig = $this->getConfig('general');
+    if ($generalConfig['gimmie_enable']) {
       $pointsConfig = $this->getConfig('points');
 
+      $id = Mage::getModel('core/cookie')->get(self::COOKIE_KEY_SOURCE);
+      $object = $observer->getEvent()->getDataObject();
 
-      if ($generalConfig['gimmie_enable']) {
+      $triggered = $object->triggered;
+      $newCustomer = $object->newCustomer;
+
+      if (!isset($triggered) && isset($newCustomer) && !empty($id)) {
+        $object->triggered = true;
 
         $event = 'did_magento_user_referral_other_user';
         if ($pointsConfig['gimmie_trigger_'.$event]) {
@@ -70,18 +69,25 @@ class Gimmie_WidgetPage_Model_Observer
           $this->getGimmie($email)->trigger($event);
         }
 
-        $event = 'magento_register_user';
-        if ($pointsConfig['gimmie_trigger_'.$event]) {
-          $customer = $observer->getCustomer()->getData();
-          $email = $customer['email'];
-
-          $this->getGimmie($email)->trigger($event);
-        }
-
       }
 
     }
 
+  }
+
+  public function registerSuccess($observer) {
+    $generalConfig = $this->getConfig('general');
+    $pointsConfig = $this->getConfig('points');
+
+    if ($generalConfig['gimmie_enable']) {
+      $event = 'magento_register_user';
+      if ($pointsConfig['gimmie_trigger_'.$event]) {
+        $customer = $observer->getCustomer()->getData();
+        $email = $customer['email'];
+
+        $this->getGimmie($email)->trigger($event);
+      }
+    }
   }
 
   public function giveoutPointsAndTriggerPurchased($event)

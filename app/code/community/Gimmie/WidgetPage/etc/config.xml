@@ -33,11 +33,21 @@
         <observers>
           <Gimmie_WidgetPage>
             <class>Gimmie_WidgetPage_Model_observer</class>
-            <method>registerSuccess</method>
+            <method>triggerReferral</method>
             <type>singleton</type>
           </Gimmie_WidgetPage>
         </observers>
       </customer_save_after>
+
+      <customer_register_success>
+        <observers>
+          <Gimmie_WidgetPage>
+            <class>Gimmie_WidgetPage_Model_observer</class>
+            <method>registerSuccess</method>
+            <type>singleton</type>
+          </Gimmie_WidgetPage>
+        </observers>
+      </customer_register_success>
 
       <sales_order_save_after>
         <observers>
