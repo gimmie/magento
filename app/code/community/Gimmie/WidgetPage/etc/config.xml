@@ -138,8 +138,8 @@
 
     <Gimmie>
       <general>
-        <consumer_key>e52853bfdcf1d49a0368181245b7</consumer_key>
-        <secret_key>3a95b4f7da128421ca7a15d67d3b</secret_key>
+        <consumer_key></consumer_key>
+        <secret_key></secret_key>
         <country>auto</country>
       </general>
       <views>
