@@ -143,6 +143,8 @@
         <country>auto</country>
       </general>
       <views>
+        <enable_top_links_menu>0</enable_top_links_menu>
+        <top_link_menu_name>Rewards</top_link_menu_name>
         <catalog_view>1</catalog_view>
         <profile_view>1</profile_view>
         <leaderboard_view>1</leaderboard_view>
