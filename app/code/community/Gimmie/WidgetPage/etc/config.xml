@@ -67,9 +67,9 @@
     </models>
 
     <blocks>
-      <Gimmie>
+      <widgetpage>
         <class>Gimmie_WidgetPage_Block</class>
-      </Gimmie>
+      </widgetpage>
     </blocks>
 
   </global>

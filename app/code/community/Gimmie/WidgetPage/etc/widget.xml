@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<widgets>
+  <Gimmie_Navigation type="widgetpage/navigation">
+    <name>Gimmie Navigation</name>
+    <description type="desc">Add Gimmie navigation link</description>
+  </Gimmie_Navigation>
+</widgets>
