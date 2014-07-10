@@ -60,6 +60,18 @@
       </sales_order_save_after>
     </events>
 
+    <models>
+      <Gimmie_WidgetPage>
+        <class>Gimmie_WidgetPage_Model</class>
+      </Gimmie_WidgetPage>
+    </models>
+
+    <blocks>
+      <Gimmie>
+        <class>Gimmie_WidgetPage_Block</class>
+      </Gimmie>
+    </blocks>
+
   </global>
 
   <frontend>
@@ -194,16 +206,6 @@
     </Gimmie>
 
   </default>
-
-  <global>
-
-    <models>
-      <Gimmie_WidgetPage>
-        <class>Gimmie_WidgetPage_Model</class>
-      </Gimmie_WidgetPage>
-    </models>
-
-  </global>
 
   <crontab>
     <jobs>
