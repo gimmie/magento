@@ -1,6 +1,7 @@
 # Gimmie Magento Plugins
 
 Adding Gimmie rewards to Magento and allow user earn points and get real rewards when purchasing and referral friends.
+To install this plugin, we provide [quickstart here](https://github.com/gimmie/quickstart/blob/master/magento.md).
 
 # Features
 
@@ -8,15 +9,6 @@ Adding Gimmie rewards to Magento and allow user earn points and get real rewards
 - Show/Hide Gimmie view when embed in site.
 - Enable/Disable events that you want to give out points in settings.
 - Give out points base on amount that user purchase when user commit transaction.
-
-# Installation
-
-- Go to Magento Connect and Magento Connect Manager in Admin/System menu.
-- Login to Magento Connect Manager with your admin password and upload Gimmie plugin file in `Direct package file upload`
-
-# How to insert gimmie view to Magento
-
-On theme design, add link or button to menu with `gm-view="catalog"` or class name `.gm-open-catalog`.
 
 # License
 The MIT License (MIT)
