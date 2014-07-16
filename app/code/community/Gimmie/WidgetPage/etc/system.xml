@@ -202,7 +202,7 @@
             </purchase_exchange_points>
 
 
-            <gimmie_trigger_magento_top_spender_of_the_month>
+            <gimmie_trigger_top_spender_of_the_month>
               <label>Top spender event</label>
               <comment>
                 <![CDATA[Every month, give out rewards(points/instant reward) to top spender]]>
@@ -213,9 +213,9 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_top_spender_of_the_month>
+            </gimmie_trigger_top_spender_of_the_month>
 
-            <gimmie_trigger_magento_register_user>
+            <gimmie_trigger_register_user>
               <label>User registers event</label>
               <comment>
                 <![CDATA[Give out points when user register]]>
@@ -226,9 +226,9 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_register_user>
+            </gimmie_trigger_register_user>
 
-            <gimmie_trigger_magento_refer_a_friend>
+            <gimmie_trigger_refer_a_friend>
               <label>Referral event</label>
               <comment>
                 <![CDATA[Give out rewards when user invites friends]]>
@@ -239,10 +239,10 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_refer_a_friend>
+            </gimmie_trigger_refer_a_friend>
 
 
-            <gimmie_trigger_magento_purchase_item>
+            <gimmie_trigger_purchase_item>
               <label>Purchases event</label>
               <comment>
                 <![CDATA[Give out rewards when user purchases item]]>
@@ -253,9 +253,9 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_purchase_item>
+            </gimmie_trigger_purchase_item>
 
-            <gimmie_trigger_magento_purchase_item_in_birthday_month>
+            <gimmie_trigger_purchase_item_in_birthday_month>
               <label>Birthday month event</label>
               <comment>
                 <![CDATA[Give out rewards when user purchases in their birthday month]]>
@@ -266,7 +266,7 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_purchase_item_in_birthday_month>
+            </gimmie_trigger_purchase_item_in_birthday_month>
           </fields>
 
         </points>
