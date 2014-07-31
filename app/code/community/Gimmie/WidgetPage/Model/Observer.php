@@ -81,11 +81,11 @@ class Gimmie_WidgetPage_Model_Observer
   }
 
   public function registerSuccess(Varien_Event_Observer $observer) {
-    return $this->triggerEvent('register_user');
+    return $this->triggerEvent('register_user', $observer);
   }
 
   public function loginSuccess(Varien_Event_Observer $observer) {
-    return $this->triggerEvent('login_user');
+    return $this->triggerEvent('login_user', $observer);
   }
 
   public function giveoutPointsAndTriggerPurchased(Varien_Event_Observer $event)
