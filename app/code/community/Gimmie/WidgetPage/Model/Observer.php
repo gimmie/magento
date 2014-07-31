@@ -38,16 +38,20 @@ class Gimmie_WidgetPage_Model_Observer
         $_GET['gmref'],
         30 * 86400);
     }
+
+    return $observer;
   }
 
-  public function flagNewCustomer($observer) {
+  public function flagNewCustomer(Varien_Event_Observer $observer) {
     $object = $observer->getEvent()->getDataObject();
     if ($object->isObjectNew()) {
       $object->newCustomer = true;
     }
+
+    return $observer;
   }
 
-  public function triggerReferral($observer) {
+  public function triggerReferral(Varien_Event_Observer $observer) {
     $generalConfig = $this->getConfig('general');
     if ($generalConfig['gimmie_enable']) {
       $pointsConfig = $this->getConfig('points');
@@ -73,41 +77,18 @@ class Gimmie_WidgetPage_Model_Observer
 
     }
 
+    return $observer;
   }
 
-  public function registerSuccess($observer) {
-    $generalConfig = $this->getConfig('general');
-    $pointsConfig = $this->getConfig('points');
-
-    if ($generalConfig['gimmie_enable']) {
-      $event = 'register_user';
-      if ($pointsConfig['gimmie_trigger_'.$event]) {
-        $customer = $observer->getCustomer()->getData();
-        $email = $customer['email'];
-
-        $this->getGimmie($email)->trigger($event);
-      }
-    }
+  public function registerSuccess(Varien_Event_Observer $observer) {
+    return $this->triggerEvent('register_user');
   }
 
-  public function loginSuccess($observer) {
-    $generalConfig = $this->getConfig('general');
-    $pointsConfig = $this->getConfig('points');
-
-    if ($generalConfig['gimmie_enable']) {
-      $event = 'login_user';
-      if ($pointsConfig['gimmie_trigger_'.$event]) {
-        $customerData = $observer->getCustomer()->getData();
-        $email = $customerData['email'];
-
-        $this->getGimmie($email)->trigger($event);
-
-        Mage::log ("Trigger $event for $email");
-      }
-    }
+  public function loginSuccess(Varien_Event_Observer $observer) {
+    return $this->triggerEvent('login_user');
   }
 
-  public function giveoutPointsAndTriggerPurchased($event)
+  public function giveoutPointsAndTriggerPurchased(Varien_Event_Observer $event)
   {
     $order = $event->getOrder();
     $generalConfig = $this->getConfig('general');
@@ -136,15 +117,30 @@ class Gimmie_WidgetPage_Model_Observer
       }
 
     }
+
+    return $event;
   }
 
-  public function monthTopSpender($observer) {
+  public function subscribeNewsletter(Varien_Event_Observer $observer)
+  {
+    $event = 'subscribe_newsletter';
+    if ($this->isEventEnable($event)) {
+      $subscriber = $observer->getEvent()->getDataObject();
+      $data = $subscriber->getData();
+
+      $statusChange = $subscriber->getIsStatusChanged();
+      if ($data['subscriber_status'] == "1" && $statusChange == true) {
+        $this->getGimmie($email)->trigger($event);
+      }
+    }
+
+    return $observer;
+  }
+
+  public function monthTopSpender(Varien_Event_Observer $observer) {
     $event = 'top_spender_of_the_month';
-    $generalConfig = $this->getConfig('general');
-    $pointsConfig = $this->getConfig('points');
 
-    if ($generalConfig['gimmie_enable'] && $pointsConfig["gimmie_trigger_$event"]) {
-
+    if ($this->isEventEnable($event)) {
       $date = getdate(strtotime('-1 months'));
       $targetMonth = $date['mon'];
       $targetYear = $date['year'];
@@ -160,6 +156,28 @@ class Gimmie_WidgetPage_Model_Observer
       $this->getGimmie($email)->trigger($event);
     }
 
+    return $observer;
+  }
+
+  private function triggerEvent($event, $observer) {
+    if ($this->isEventEnable($event)) {
+      $customer = $observer->getCustomer()->getData();
+      $email = $customer['email'];
+
+      $this->getGimmie($email)->trigger($event);
+
+      Mage::log ("Trigger $event for $email");
+    }
+
+    return $observer;
+  }
+
+  private function isEventEnable($eventName) {
+    $generalConfig = $this->getConfig('general');
+    $pointsConfig = $this->getConfig('points');
+
+    $enable = $generalConfig['gimmie_enable'] == true && $pointsConfig['gimmie_trigger_'.$eventName] == true;
+    return $enable;
   }
 
 }

@@ -62,12 +62,22 @@
       <sales_order_save_after>
         <observers>
           <Gimmie_WidgetPage>
-            <type>model</type>
+            <type>singleton</type>
             <class>Gimmie_WidgetPage_Model_observer</class>
             <method>giveoutPointsAndTriggerPurchased</method>
           </Gimmie_WidgetPage>
         </observers>
       </sales_order_save_after>
+
+      <newsletter_subscriber_save_commit_after>
+        <observers>
+          <Gimmie_WidgetPage>
+            <type>singleton</type>
+            <class>Gimmie_WidgetPage_Model_observer</class>
+            <method>subscribeNewsletter</method>
+          </Gimmie_WidgetPage>
+        </observers>
+      </newsletter_subscriber_save_commit_after>
     </events>
 
     <models>
@@ -169,6 +179,7 @@
         <gimmie_trigger_refer_a_friend>1</gimmie_trigger_refer_a_friend>
         <gimmie_trigger_purchase_item>1</gimmie_trigger_purchase_item>
         <gimmie_trigger_purchase_item_in_birthday_month>1</gimmie_trigger_purchase_item_in_birthday_month>
+        <gimmie_trigger_subscribe_newsletter>1</gimmie_trigger_subscribe_newsletter>
       </points>
       <text_and_styles>
         <widget_text>
