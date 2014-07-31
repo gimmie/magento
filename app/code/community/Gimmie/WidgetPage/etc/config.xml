@@ -148,18 +148,28 @@
 
     <Gimmie>
       <general>
+        <gimmie_enable>0</gimmie_enable>
         <consumer_key></consumer_key>
         <secret_key></secret_key>
         <country>auto</country>
       </general>
       <views>
-        <enable_top_links_menu>0</enable_top_links_menu>
+        <enable_top_links_menu>1</enable_top_links_menu>
         <top_link_menu_name>Rewards</top_link_menu_name>
         <catalog_view>1</catalog_view>
         <profile_view>1</profile_view>
         <leaderboard_view>1</leaderboard_view>
         <notification_timeout>10</notification_timeout>
+        <hide_sponsor_here>0</hide_sponsor_here>
       </views>
+      <points>
+        <gimmie_trigger_top_spender_of_the_month>1</gimmie_trigger_top_spender_of_the_month>
+        <gimmie_trigger_register_user>1</gimmie_trigger_register_user>
+        <gimmie_trigger_login_user>1</gimmie_trigger_login_user>
+        <gimmie_trigger_refer_a_friend>1</gimmie_trigger_refer_a_friend>
+        <gimmie_trigger_purchase_item>1</gimmie_trigger_purchase_item>
+        <gimmie_trigger_purchase_item_in_birthday_month>1</gimmie_trigger_purchase_item_in_birthday_month>
+      </points>
       <text_and_styles>
         <widget_text>
         <![CDATA[
