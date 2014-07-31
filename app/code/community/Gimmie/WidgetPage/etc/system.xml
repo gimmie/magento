@@ -293,6 +293,20 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
             </gimmie_trigger_subscribe_newsletter>
+            
+            <gimmie_trigger_buy_featured_item>
+              <label>Buy Featured Item</label>
+              <comment>
+                <![CDATA[
+                Trigger event when user buy item in provided catalog. If this field is empty, featured item event won't trigger.
+                ]]>
+              </comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>25</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_buy_featured_item>
           </fields>
 
         </points>
