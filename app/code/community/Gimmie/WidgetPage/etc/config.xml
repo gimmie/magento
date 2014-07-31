@@ -49,6 +49,16 @@
         </observers>
       </customer_register_success>
 
+      <customer_login>
+        <observers>
+          <Gimmie_WidgetPage>
+            <class>Gimmie_WidgetPage_Model_observer</class>
+            <method>loginSuccess</method>
+            <type>singleton</type>
+          </Gimmie_WidgetPage>
+        </observers>
+      </customer_login>
+
       <sales_order_save_after>
         <observers>
           <Gimmie_WidgetPage>
@@ -138,8 +148,8 @@
 
     <Gimmie>
       <general>
-        <consumer_key>e52853bfdcf1d49a0368181245b7</consumer_key>
-        <secret_key>3a95b4f7da128421ca7a15d67d3b</secret_key>
+        <consumer_key></consumer_key>
+        <secret_key></secret_key>
         <country>auto</country>
       </general>
       <views>

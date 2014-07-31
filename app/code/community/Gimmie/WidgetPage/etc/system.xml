@@ -191,7 +191,7 @@
             </purchase_exchange_points>
 
 
-            <gimmie_trigger_magento_top_spender_of_the_month>
+            <gimmie_trigger_top_spender_of_the_month>
               <label>Top spender event</label>
               <comment>
                 <![CDATA[Every month, give out rewards(points/instant reward) to top spender]]>
@@ -202,10 +202,10 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_top_spender_of_the_month>
+            </gimmie_trigger_top_spender_of_the_month>
 
-            <gimmie_trigger_magento_register_user>
-              <label>User registers event</label>
+            <gimmie_trigger_register_user>
+              <label>User register event</label>
               <comment>
                 <![CDATA[Give out points when user register]]>
               </comment>
@@ -215,26 +215,12 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_register_user>
+            </gimmie_trigger_register_user>
 
-            <gimmie_trigger_magento_refer_a_friend>
-              <label>Referral event</label>
+            <gimmie_trigger_login_user>
+              <label>User login event</label>
               <comment>
-                <![CDATA[Give out rewards when user invites friends]]>
-              </comment>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>19</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_refer_a_friend>
-
-
-            <gimmie_trigger_magento_purchase_item>
-              <label>Purchases event</label>
-              <comment>
-                <![CDATA[Give out rewards when user purchases item]]>
+                <![CDATA[Give out points when user login]]>
               </comment>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -242,12 +228,12 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_purchase_item>
+            </gimmie_trigger_login_user>
 
-            <gimmie_trigger_magento_purchase_item_in_birthday_month>
-              <label>Birthday month event</label>
+            <gimmie_trigger_refer_a_friend>
+              <label>Referral event</label>
               <comment>
-                <![CDATA[Give out rewards when user purchases in their birthday month]]>
+                <![CDATA[Give out rewards when user invites friends]]>
               </comment>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -255,7 +241,34 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
-            </gimmie_trigger_magento_purchase_item_in_birthday_month>
+            </gimmie_trigger_refer_a_friend>
+
+
+            <gimmie_trigger_purchase_item>
+              <label>Purchases event</label>
+              <comment>
+                <![CDATA[Give out rewards when user purchases item]]>
+              </comment>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>22</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_purchase_item>
+
+            <gimmie_trigger_purchase_item_in_birthday_month>
+              <label>Birthday month event</label>
+              <comment>
+                <![CDATA[Give out rewards when user purchases in their birthday month]]>
+              </comment>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>23</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </gimmie_trigger_purchase_item_in_birthday_month>
           </fields>
 
         </points>
