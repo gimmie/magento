@@ -116,6 +116,37 @@ class Gimmie_WidgetPage_Model_Observer
         $this->getGimmie($email)->trigger($birthmonth_event);
       }
 
+      
+      if ($pointsConfig["gimmie_trigger_buy_featured_item"]) {
+        $category = $pointsConfig["gimmie_trigger_buy_featured_item"];
+
+        $items = $order->getAllVisibleItems();
+        $shouldTrigger = false;
+        foreach ($items as $item) {
+          Mage::log ('Product ID: '.$item->getProductId());
+
+          $product = Mage::getModel('catalog/product')->load($item->getProductId());
+          $cats = $product->getCategoryIds();
+          foreach ($cats as $cat) {
+            $name = Mage::getModel('catalog/category')->load($cat)->getName();
+            if (strcmp($name, $category) === 0) {
+              $shouldTrigger = true;
+            }
+            break;
+          }
+
+          if ($shouldTrigger === true) {
+            break;
+          }
+
+        }
+
+        if ($shouldTrigger === true) {
+          $this->getGimmie($email)->trigger('purchase_special_item');
+          Mage::log("Trigger purchase special item");
+        }
+      }
+
     }
 
     return $event;

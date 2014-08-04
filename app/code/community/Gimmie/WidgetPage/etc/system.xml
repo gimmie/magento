@@ -295,10 +295,10 @@
             </gimmie_trigger_subscribe_newsletter>
             
             <gimmie_trigger_buy_featured_item>
-              <label>Buy Featured Item</label>
+              <label>Buy Item in special category</label>
               <comment>
                 <![CDATA[
-                Trigger event when user buy item in provided catalog. If this field is empty, featured item event won't trigger.
+                Trigger event when user buy item in provided category. If this field is empty, featured item event won't trigger.
                 ]]>
               </comment>
               <frontend_type>text</frontend_type>
