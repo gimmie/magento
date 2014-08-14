@@ -71,6 +71,7 @@ class Gimmie_WidgetPage_Model_Observer
           $email = $customerData['email'];
 
           $this->getGimmie($email)->trigger($event);
+          $this->_log("Trigger $event for $email");
         }
 
       }
@@ -105,6 +106,7 @@ class Gimmie_WidgetPage_Model_Observer
       $purchased_event = 'purchase_item';
       if ($pointsConfig["gimmie_trigger_$purchased_event"]) {
         $this->getGimmie($email)->trigger($purchased_event);
+        $this->_log("Trigger $purchased_event for $email");
       }
 
       $date = getdate(strtotime($order->getCustomerDob()));
@@ -114,6 +116,7 @@ class Gimmie_WidgetPage_Model_Observer
       $birthmonth_event = 'purchase_item_in_birthday_month';
       if ($pointsConfig["gimmie_trigger_$birthmonth_event"] && ($birthMonth == $currentMonth)) {
         $this->getGimmie($email)->trigger($birthmonth_event);
+        $this->_log("Trigger $birthmonth_event for $email");
       }
 
       
@@ -123,7 +126,7 @@ class Gimmie_WidgetPage_Model_Observer
         $items = $order->getAllVisibleItems();
         $shouldTrigger = false;
         foreach ($items as $item) {
-          Mage::log ('Product ID: '.$item->getProductId());
+          $this->_log("Product ID: ".$item->getProductId());
 
           $product = Mage::getModel('catalog/product')->load($item->getProductId());
           $cats = $product->getCategoryIds();
@@ -142,8 +145,9 @@ class Gimmie_WidgetPage_Model_Observer
         }
 
         if ($shouldTrigger === true) {
-          $this->getGimmie($email)->trigger('purchase_special_item');
-          Mage::log("Trigger purchase special item");
+          $event = 'purchase_special_item';
+          $this->getGimmie($email)->trigger($event);
+          $this->_log("Trigger $event for $email");
         }
       }
 
@@ -162,6 +166,7 @@ class Gimmie_WidgetPage_Model_Observer
       $statusChange = $subscriber->getIsStatusChanged();
       if ($data['subscriber_status'] == "1" && $statusChange == true) {
         $this->getGimmie($email)->trigger($event);
+        $this->_log("Trigger $event for $email");
       }
     }
 
@@ -185,6 +190,8 @@ class Gimmie_WidgetPage_Model_Observer
 
       $email = $row['customer_email'];
       $this->getGimmie($email)->trigger($event);
+
+      $this->_log("Trigger $event for $email");
     }
 
     return $observer;
@@ -196,8 +203,7 @@ class Gimmie_WidgetPage_Model_Observer
       $email = $customer['email'];
 
       $this->getGimmie($email)->trigger($event);
-
-      Mage::log ("Trigger $event for $email");
+      $this->_log ("Trigger $event for $email");
     }
 
     return $observer;
@@ -209,6 +215,32 @@ class Gimmie_WidgetPage_Model_Observer
 
     $enable = $generalConfig['gimmie_enable'] == true && $pointsConfig['gimmie_trigger_'.$eventName] == true;
     return $enable;
+  }
+
+  private function _log($message) {
+    if (!function_exists('curl_version') && !function_exists('json_encode')) {
+      return;
+    }
+
+    Mage::log ($message);
+    $data = array(
+      "site" => Mage::getBaseUrl(),
+      "message" => $message
+    );
+    $data_string = json_encode($data);
+
+    $ch = curl_init('https://logs-01.loggly.com/inputs/9f9b6f87-3600-43bc-afea-fa9850da4390/tag/magento/');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Content-Length: '.strlen($data_string)
+    ));
+
+    $result = curl_exec($ch);
+
+    curl_close($ch);
   }
 
 }
