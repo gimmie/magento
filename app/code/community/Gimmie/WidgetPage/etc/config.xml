@@ -9,6 +9,14 @@
   <global>
 
     <events>
+      <controller_action_layout_generate_blocks_after>
+        <observers>
+          <class>Gimmie_WidgetPage_Model_observer</class>
+          <method>addContent</method>
+          <type>singleton</type>
+        </observers>
+      </controller_action_layout_generate_blocks_after>
+
       <controller_front_init_before>
         <observers>
           <Gimmie_WidgetPage>

@@ -29,8 +29,19 @@ class Gimmie_WidgetPage_Model_Observer
     return $gimmie;
   }
 
-  public function captureReferral(Varien_Event_Observer $observer)
-  {
+  public function addContent(Varien_Event_Observer $observer) {
+    $layout = $observer->getEvent()->getLayout();
+    $block = $layout->createBlock(
+      "Mage_Core_Block_Template", 
+      "gimmie_config", 
+      array("template" => "gimmie/gimmie.phtml")
+    );
+
+    $head = $layout->getBlock("head");
+    $head->append($block);
+  }
+
+  public function captureReferral(Varien_Event_Observer $observer) {
     if (array_key_exists('gmref', $_GET)) {
       // here we will save the referrer affiliate ID
       Mage::getModel('core/cookie')->set(
