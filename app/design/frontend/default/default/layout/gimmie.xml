@@ -1,13 +1,5 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
-  <default>
-
-    <reference name="head">
-      <block type="core/template" name="gimmie_config" template="gimmie.phtml"></block>
-    </reference>
-
-  </default>
-
   <customer_account_index>
     <reference name="customer_account_dashboard">
       <block type="core/template" name="gimmie_dashboard_top" as="customer.account.dashboard.extra" template="dashboard.phtml" />

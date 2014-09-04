@@ -3,13 +3,6 @@
 Adding Gimmie rewards to Magento and allow user earn points and get real rewards when purchasing and referral friends.
 To install this plugin, we provide [quickstart here](https://github.com/gimmie/quickstart/blob/master/magento.md).
 
-# Features
-
-- Set reward country for filter rewards available in country or auto detect from user IP address.
-- Show/Hide Gimmie view when embed in site.
-- Enable/Disable events that you want to give out points in settings.
-- Give out points base on amount that user purchase when user commit transaction.
-
 # License
 The MIT License (MIT)
 
