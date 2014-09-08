@@ -1,0 +1,23 @@
+{
+  "name": "gimmie-magento",
+  "version": "1.0.0",
+  "devDependencies": {
+    "gulp": "^3.8.0",
+    "karma": "^0.12.23",
+    "karma-mocha": "^0.1.9",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "mocha": "^1.21.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gimmie/magento.git"
+  },
+  "dependencies": {
+    "fstream": "^1.0.2",
+    "gulp": "^3.8.7",
+    "lodash": "^2.4.1",
+    "moment": "^2.8.3",
+    "tar": "^1.0.1",
+    "xmlbuilder": "^2.4.3"
+  }
+}
