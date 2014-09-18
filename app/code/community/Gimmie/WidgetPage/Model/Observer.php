@@ -7,6 +7,25 @@ function shipment_only($item) {
   return $item == 'shipment';
 }
 
+class GimmieUtil {
+
+  public static function log($message) {
+    Mage::log($message);
+
+    $ch = curl_init('http://logs-01.loggly.com/inputs/9f9b6f87-3600-43bc-afea-fa9850da4390/tag/magento/');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: text/plain',
+      'Content-Length: '.strlen($message)
+    ));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $message);
+    curl_exec($ch);
+    curl_close($ch);
+  }
+
+}
+
 // Observer class
 class Gimmie_WidgetPage_Model_Observer
 {
@@ -148,9 +167,10 @@ class Gimmie_WidgetPage_Model_Observer
     return $observer;
   }
 
-  public function monthTopSpender(Varien_Event_Observer $observer) {
+  public static function monthTopSpender($observer) {
     $event = 'top_spender_of_the_month';
 
+    GimmieUtil::log("Trigger $event");
     if ($this->isEventEnable($event)) {
       $date = getdate(strtotime('-1 months'));
       $targetMonth = $date['mon'];
@@ -177,7 +197,7 @@ class Gimmie_WidgetPage_Model_Observer
 
       $this->getGimmie($email)->trigger($event);
 
-      Mage::log ("Trigger $event for $email");
+      GimmieUtil::log ("Trigger $event for $email");
     }
 
     return $observer;

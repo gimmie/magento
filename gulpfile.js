@@ -42,16 +42,29 @@ gulp.task('generate:package', function() {
 
   var meta = {
     'name': 'gimmie',
-    'version': '1.0.0',
+    'version': '1.0.27',
     'stability': 'stable',
     'license': 'MITL',
     'channel': 'community',
     'extends': {},
-    'summary': 'Summary',
+    'summary': 'Adding Gimmie rewards to Magento and allow user earn points and get real rewards when purchasing and referral friends.',
     'description': {
       '#cdata': multiline(function() {
 /*
-Multiline content here
+# Gimmie Magento plugin
+
+Adding Gimmie rewards to Magento and allow user earn points and get real rewards when purchasing and referral friends.
+
+# Features
+
+- Set reward country for filter rewards available in country or auto detect from user IP address.
+- Show/Hide Gimmie view when embed in site.
+- Enable/Disable events that you want to give out points in settings.
+- Give out points base on amount that user purchase when user commit transaction.
+
+# How to insert gimmie view to Magento
+
+On theme design, add link or button to menu with `gm-view="catalog"` or class name `.gm-open-catalog`.
  */
       })
     },
@@ -59,6 +72,129 @@ Multiline content here
       '#cdata': multiline(function() {
 /*
 Other multiline here
+v 1.0.27
+
+- Fix top spender of the month doesn't trigger.
+
+v 1.0.26
+
+- Add loggly for gathering information from client site.
+
+v 1.0.25
+
+- Fix package channel.
+
+v 1.0.24
+
+- Add user login event.
+- Add buy item from special catalog event.
+- Add subscribe to newsletter event.
+- Change some typo and bug fixes.
+
+v 1.0.23
+
+- Drop event prefix.
+
+v 1.0.22
+
+- Add option to add Gimmie popup link on top menu.
+
+v 1.0.21
+
+- Changed all events name in full version.
+
+v 1.0.20 
+
+- Changed referral message in dashboard.
+
+v 1.0.19
+
+- Fixed error in register success event.
+
+v 1.0.18
+
+- Added register success event.
+
+v 1.0.17
+
+- Changed event name for free plugin.
+
+v 1.0.16
+
+- Changed scheduler time to first day of the month on midnight.
+
+v 1.0.15
+
+- Fixed secure site cannot load user profile from proxy.
+
+v 1.0.14
+
+- Added terms and conditions field.
+
+v 1.0.13
+
+- Fixed register when checkout doesn't trigger referral.
+
+v 1.0.12
+
+- Fixed referral doesn't trigger events.
+- Fixed place the order redirect back to order lists page.
+
+v 1.0.11
+
+- Moved style block to below script.
+
+v 1.0.10
+
+- Added hide "Sponsor here" from catalog option.
+
+v 1.0.9
+
+- Fixed referral doesn't earn points.
+
+v 1.0.8
+
+- Changed exchange points state from transaction complete to shipment.
+- Added social and share link back.
+
+v 1.0.7
+
+- Removed exchanges rate.
+
+v 1.0.6
+
+- Changed events name.
+
+v 1.0.5
+
+- Fixed session error cause cronjob cannot run.
+
+v 1.0.4
+
+- Floor down the amount/prices.
+- Fixed anonymous user should not have data in Gimmie Widget options.
+
+v 1.0.3
+
+- Hide notice message and changed the way check id.
+
+v 1.0.2
+
+- Fixed confirm order and got blank page.
+- Fixed some event doesn't trigger.
+
+v 1.0.1
+
+- Fixed cannot open Gimmie Widget.
+
+Initial Release 1.0.0
+
+- Set reward country for filter rewards available in country or auto detect from user IP address.
+- Show/Hide Gimmie view when embed in site.
+- Enable/Disable events that you want to give out points in settings.
+- Give out points base on amount that user purchase when user commit transaction.
+
+
  */
       })
     },
