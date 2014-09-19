@@ -57,7 +57,9 @@ class Gimmie_WidgetPage_Model_Observer
     );
 
     $head = $layout->getBlock("head");
-    $head->append($block);
+    if (is_object($head)) {
+      $head->append($block);
+    }
   }
 
   public function captureReferral(Varien_Event_Observer $observer) {
