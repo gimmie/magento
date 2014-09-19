@@ -42,7 +42,7 @@ gulp.task('generate:package', function() {
 
   var meta = {
     'name': 'gimmie',
-    'version': '1.0.27',
+    'version': '1.0.28',
     'stability': 'stable',
     'license': 'MITL',
     'channel': 'community',
@@ -71,7 +71,11 @@ On theme design, add link or button to menu with `gm-view="catalog"` or class na
     'notes': {
       '#cdata': multiline(function() {
 /*
-Other multiline here
+v 1.0.28
+
+- Fix checkout and redirect back to product.
+- Fix cannot save configuration.
+
 v 1.0.27
 
 - Fix top spender of the month doesn't trigger.
