@@ -42,7 +42,7 @@ gulp.task('generate:package', function() {
 
   var meta = {
     'name': 'gimmie',
-    'version': '1.0.27',
+    'version': '1.0.29',
     'stability': 'stable',
     'license': 'MITL',
     'channel': 'community',
