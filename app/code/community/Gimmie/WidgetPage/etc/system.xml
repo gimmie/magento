@@ -49,7 +49,7 @@
             <secret_key>
               <label>Secret Key</label>
               <comment>
-                <![CDATA[<a href="http://www.gimmieworld.com/sign-up" target="_blank">Signup here to get your own key and secret.</a>]]>
+                <![CDATA[<a href="http://app.gimmie.io/?platform=Magento" target="_blank">Signup here to get your own key and secret.</a>]]>
               </comment>
               <frontend_type>text</frontend_type>
               <sort_order>3</sort_order>

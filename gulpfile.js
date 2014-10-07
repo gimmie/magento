@@ -72,6 +72,10 @@ On theme design, add link or button to menu with `gm-view="catalog"` or class na
       '#cdata': multiline(function() {
 /*
 Other multiline here
+v 1.0.29
+
+- Change Gimmie signup Url.
+
 v 1.0.27
 
 - Fix top spender of the month doesn't trigger.
