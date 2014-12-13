@@ -3,6 +3,18 @@
 Adding Gimmie rewards to Magento and allow user earn points and get real rewards when purchasing and referral friends.
 To install this plugin, we provide [quickstart here](https://github.com/gimmie/quickstart/blob/master/magento.md).
 
+## Build
+
+- Clone all submodules (gimmie php project) requires for this plugin
+
+```
+$git submodule init && git submodule update
+```
+
+- Install gulp by npm. `npm install -g gulp`
+- Run gulp command to build magento package. It will generate `gimmie.tgz` file inside root project.
+- To update version, change version number in [gulpfile.js](gulpfile.js) and run `gulp` to create magento package file.
+
 # License
 The MIT License (MIT)
 
