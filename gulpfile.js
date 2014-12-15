@@ -42,7 +42,7 @@ gulp.task('generate:package', function() {
 
   var meta = {
     'name': 'gimmie',
-    'version': '1.0.30',
+    'version': '1.0.31',
     'stability': 'stable',
     'license': 'MITL',
     'channel': 'community',
@@ -72,6 +72,10 @@ On theme design, add link or button to menu with `gm-view="catalog"` or class na
       '#cdata': multiline(function() {
 /*
 Other multiline here
+v 1.0.31
+
+- Fix for window.onload conflict.
+
 v 1.0.30
 
 - Fix for non SSL access.
