@@ -77,7 +77,11 @@
 	    "templates"                   : {}
   };
 
-  window.onload = function () {
+  window.addEventListener ?
+  window.addEventListener("load",loadGimmie,false) :
+  window.attachEvent && window.attachEvent("onload",loadGimmie);
+
+  function loadGimmie () {
     var gimmieRoot = document.createElement('div');
     gimmieRoot.id = 'gimmie-root';
     document.body.appendChild(gimmieRoot);
